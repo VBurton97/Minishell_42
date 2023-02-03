@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 22:41:29 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/03 12:32:00 by sasha            ###   ########.fr       */
+/*   Created: 2022/11/10 18:15:00 by hsliu             #+#    #+#             */
+/*   Updated: 2022/11/12 21:44:55 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_parsing(char *input, t_line **output)
+#include <stdlib.h>
+
+void	*ft_memset(void *s, int c, size_t n)
 {
-	  
+	size_t	i;
+	char	c_byte;
+
+	c_byte = (char)c;
+	i = 0;
+	while (i < n)
+	{
+		((char *)s)[i] = c_byte;
+		i++;
+	}
+	return (s);
 }

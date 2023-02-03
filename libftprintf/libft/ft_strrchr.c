@@ -1,16 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 22:41:29 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/03 12:32:00 by sasha            ###   ########.fr       */
+/*   Created: 2022/11/13 13:17:08 by hsliu             #+#    #+#             */
+/*   Updated: 2022/11/13 13:36:11 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_parsing(char *input, t_line **output)
+char	*ft_strrchr(const char *s, int c)
 {
-	  
+	char	x;
+	char	*ptr;
+
+	x = (char)c;
+	ptr = 0;
+	while (*s)
+	{
+		if (*s == x)
+			ptr = (char *)s;
+		s++;
+	}
+	if (*s == x)
+		return ((char *)s);
+	return (ptr);
 }

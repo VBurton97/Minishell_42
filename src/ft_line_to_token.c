@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_line_to_token.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 22:41:29 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/03 12:32:00 by sasha            ###   ########.fr       */
+/*   Created: 2023/02/03 12:36:25 by sasha             #+#    #+#             */
+/*   Updated: 2023/02/03 12:38:51 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_parsing(char *input, t_line **output)
+#include "parsing.h"
+
+
+/*
+    return NULL
+    if malloc fails
+    if quote not enclosed
+*/
+t_token *ft_line_to_token(char *line)
 {
-	  
+
+
+    
 }
