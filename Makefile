@@ -6,7 +6,7 @@
 #    By: sasha <sasha@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/02/03 14:00:08 by sasha            ###   ########.fr        #
+#    Updated: 2023/02/03 16:15:33 by sasha            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJ_DIR	=	./.obj/
 
 INC_DIR	=	./include/
 
-LIST_SRC	=	token_utils.c \
+LIST_SRC	=	token_utils.c line_to_token_utils.c ft_line_to_token.c \
 				test.c
 
 LIST_OBJ	=	$(LIST_SRC:.c=.o) 
@@ -44,7 +44,7 @@ CFLAGS	=	-Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME)	:	$(OBJ_DIR) $(OBJ) $(INC) $(LIB) 
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB) -lreadline
 
 $(LIB): $(LIB_DIR)
 	$(MAKE) -C $(LIB_DIR)

@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:25:00 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/03 15:45:39 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/03 16:20:55 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	ft_is_operator(char *buffer)
 	if (ft_strncmp(buffer, "<", 1) == 0)
 		return (1);
 	if (ft_strncmp(buffer, ">", 1) == 0)
+		return (1);
+	if (ft_strncmp(buffer, "|", 1) == 0)
 		return (1);
 	return (0);
 }
