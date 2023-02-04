@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/04 15:41:25 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/04 15:51:32 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_print_lst(t_token *lst)
 
 int main()
 {
+	/*
 	char	*buffer;
 	t_token	*lst;
 	
@@ -37,5 +38,16 @@ int main()
 	free(buffer);
 	ft_print_lst(lst);
 	printf("\nsyntax error: %d\n", ft_syntax_err(lst));
+	*/
+
+	int pipefd[4];
+	if (pipe(pipefd))
+		write(2, "hey\n", 4);
+	else
+		write(2, "ok\n", 3);
+	if (pipe(pipefd + 2))
+		write(2, "hey\n", 4);
+	else
+		write(2, "ok\n", 3);
 }
 

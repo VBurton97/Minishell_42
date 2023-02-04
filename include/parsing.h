@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/04 15:33:08 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/04 18:38:11 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,17 @@ t_token	*ft_get_token(char **buffer, int length);
 t_token	*ft_line_to_token(char *buffer);
 int		ft_syntax_err(t_token *lst);
 t_token *ft_is_token(char **buffer);
+
+/***  ft_set_pipe.c  ***/
+t_cmd	*ft_get_cmd(t_token *lst);
+void	ft_set_pipe(t_cmd *cmd, int n, int *p);
+int		*ft_malloc_pipe(int n);
+t_cmd	*ft_malloc_cmd(int n);
+int		ft_count_pipe(t_token *lst);
+
+/***  parsing.c  ***/
+int ft_parsing(char *buffer, t_shell *shell);
+
 
 typedef struct s_shell	t_shell;
 typedef struct s_cmd	t_cmd;
