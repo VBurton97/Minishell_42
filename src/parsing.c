@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:41:29 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/04 18:37:06 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/04 22:23:54 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ int ft_parsing(char *buffer, t_shell *shell)
 	//finish init cmd
 	shell->parsed_input = lst;
 	shell->cmd = cmd;
-	return (0)
+	return (0);
 }

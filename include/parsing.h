@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/04 18:38:11 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/04 22:09:45 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # include <fcntl.h>
 
 typedef struct s_token	t_token;
+typedef struct s_shell	t_shell;
+typedef struct s_cmd	t_cmd;
+
 /*
     Once the line is read by readline
 	The content of the buffer will be divided into token
@@ -65,9 +68,6 @@ int		ft_count_pipe(t_token *lst);
 /***  parsing.c  ***/
 int ft_parsing(char *buffer, t_shell *shell);
 
-
-typedef struct s_shell	t_shell;
-typedef struct s_cmd	t_cmd;
 
 typedef struct s_shell{
 	char	**env;

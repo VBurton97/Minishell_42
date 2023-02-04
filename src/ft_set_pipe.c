@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:43:58 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/04 18:27:51 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/04 22:22:09 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,16 @@ t_cmd	*ft_get_cmd(t_token *lst)
 
 	n = ft_count_pipe(lst);
 	cmd = ft_malloc_cmd(n + 1);
-	p = NULL;
-	if (n > 0)
-		p = ft_malloc_pipe(n);
-	if (cmd == NULL || p == NULL)
+	if (n == 0)
+	{
+		return (cmd);
+	}
+	p = ft_malloc_pipe(n);
+	if (p == NULL || cmd == NULL)
 	{
 		return (free(cmd), free(p), NULL);
 	}
-	if (n > 0)
-		ft_set_pipe(cmd, n + 1, p);
+	ft_set_pipe(cmd, n + 1, p);
 	free(p);
 	return (cmd);
 }

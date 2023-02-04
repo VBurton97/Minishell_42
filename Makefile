@@ -6,7 +6,7 @@
 #    By: sasha <sasha@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/02/04 18:38:54 by sasha            ###   ########.fr        #
+#    Updated: 2023/02/04 22:10:49 by sasha            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ INC_DIR	=	./include/
 
 LIST_SRC	=	token_utils.c line_to_token_utils.c \
 				ft_line_to_token.c ft_set_pipe.c \
-				parsing.h\
+				parsing.c\
 				test.c
 
 LIST_OBJ	=	$(LIST_SRC:.c=.o) 
