@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:25:00 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/04 22:43:05 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/04 23:19:27 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,17 @@ int	ft_is_quote(char *buffer)
 		return (0);
 	}
 	while (buffer[i] && buffer[i] != buffer[0])	
+	{
 		i++;
+	}
 	if (buffer[i] == '\0')
+	{
 		return (-1);
+	}
 	while (!ft_is_operator(buffer + i) && buffer[i] != ' ' && buffer[i])
+	{
 		i++;
+	}
 	return (i);
 }
 
