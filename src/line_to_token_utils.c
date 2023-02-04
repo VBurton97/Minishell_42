@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:25:00 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/03 16:20:55 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/04 22:43:05 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,17 @@ int	ft_is_quote(char *buffer)
 	int	i;
 
 	i = 1;
-	if (buffer[0] == '\'')
+	if (buffer[0] != '\'' && buffer[0] != '\"')
 	{
-		while (buffer[i] && buffer[i] != '\'')	
-			i++;
-		if (buffer[i] == '\0')
-			return (-1);
-		return (i + 1);
+		return (0);
 	}
-	if (buffer[0] == '\"')
-	{
-		while (buffer[i] && buffer[i] != '\"')	
-			i++;
-		if (buffer[i] == '\0')
-			return (-1);
-		return (i + 1);
-	}
-	return (0);
+	while (buffer[i] && buffer[i] != buffer[0])	
+		i++;
+	if (buffer[i] == '\0')
+		return (-1);
+	while (!ft_is_operator(buffer + i) && buffer[i] != ' ' && buffer[i])
+		i++;
+	return (i);
 }
 
 /*
@@ -90,7 +84,7 @@ int	ft_is_word(char *buffer)
 
 	i = 0;
 	while (buffer[i] && buffer[i] != ' ' && 
-		!ft_is_operator(buffer + i) && !ft_is_quote(buffer + i))
+		!ft_is_operator(buffer + i) /*&& !ft_is_quote(buffer + i)*/)
 	{
 		i++;
 	}
