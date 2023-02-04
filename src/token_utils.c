@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:46:19 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/03 14:07:49 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/04 15:26:15 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_add_token(t_token **lst, t_token *token)
 }
 
 /*
-	extract node from list
+	extract the token from list
 */
 t_token	*ft_extract_token(t_token **lst, t_token *token)
 {

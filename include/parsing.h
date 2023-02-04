@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/03 16:07:33 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/04 15:33:08 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+# include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
 
 typedef struct s_token	t_token;
 /*
@@ -50,6 +52,25 @@ t_token	*ft_get_token(char **buffer, int length);
 
 /***  ft_line_to_token.c  ***/
 t_token	*ft_line_to_token(char *buffer);
+int		ft_syntax_err(t_token *lst);
 t_token *ft_is_token(char **buffer);
+
+typedef struct s_shell	t_shell;
+typedef struct s_cmd	t_cmd;
+
+typedef struct s_shell{
+	char	**env;
+	int		exit_status;
+	t_cmd	*cmd;
+	t_token	*parsed_input;
+}	t_shell;
+
+typedef struct s_cmd{
+	//command
+	//args
+	int	write_fd;
+	int	read_fd;
+}	t_cmd;
+
 
 #endif
