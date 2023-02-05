@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   word_expansion_utils.c                             :+:      :+:    :+:   */
+/*   ft_dollar_exps.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 22:29:44 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/04 23:18:49 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/05 18:07:43 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "parsing.h"
 
 /*
     content of envp has the form:
@@ -20,14 +21,13 @@
 */
 char *ft_dollar_exps(char *word, char **envp)
 {
-    int quote_state;
-    int i;
-	int	j;
+    int 	quote_state;
+    int 	i;
+	char	*new_word;
 
     quote_state = 0;
     i = 0;
-	j = 0;
-    while (word[i])
+    while (*word)
     {
         //if (ft_is_dollar && quote_state != 1)
         //	strjoin everything before (start from word[j])
@@ -36,8 +36,18 @@ char *ft_dollar_exps(char *word, char **envp)
         //else if meet a quote 
 		//	change quote state (note: quote might be within quote)
         //else
-		//  i++
+		//  word++;
     }
-	//if (j < i)
+	//if word[i] is not \0
 	//	strjoin the rest
+}
+
+
+/*
+    return new string, which concatenate new with old
+    old string have size n
+*/
+char    *ft_strjoin_exps(char *new, char *old, int n)
+{
+    
 }

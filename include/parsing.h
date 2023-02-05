@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/05 17:37:18 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/05 17:58:51 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,12 @@ void	ft_delete_lst(t_token **lst);
 int 	ft_is_operator(char *buffer);
 int		ft_is_word(char *buffer);
 t_token	*ft_get_token(char **buffer, int length);
+int ft_set_quote_state(char c, int quote_state);
 
 /***  ft_line_to_token.c  ***/
 t_token	*ft_line_to_token(char *buffer);
 int		ft_syntax_err(t_token *lst);
-t_token *ft_is_token(char **buffer);
+t_token *ft_get_token(char **buffer);
 
 /***  ft_set_pipe.c  ***/
 t_cmd	*ft_get_cmd(t_token *lst);

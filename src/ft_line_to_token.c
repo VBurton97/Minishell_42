@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:36:25 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/05 17:39:40 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/05 17:44:03 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_token	*ft_line_to_token(char *buffer)
 			buffer++;
 		if (*buffer == '\0')
 			break;
-		token = ft_is_token(&buffer);
+		token = ft_get_token(&buffer);
 		if (!token)
 		{
 			return (ft_delete_lst(&lst), NULL);
@@ -82,7 +82,7 @@ int	ft_syntax_err(t_token *lst)
     if malloc fails
     if quote not enclosed
 */
-t_token *ft_is_token(char **buffer)
+t_token *ft_get_token(char **buffer)
 {
 	t_token	*token;
 	int		length;

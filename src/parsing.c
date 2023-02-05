@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:41:29 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/04 23:07:43 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/05 17:45:44 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ int ft_parsing(char *buffer, t_shell *shell)
 	lst = ft_line_to_token(buffer);
 	if (!lst || ft_syntax_err(lst))
 	{
-		//delete lst
+		ft_delete_lst(&lst);
 		return (1);
 	}
 	cmd = ft_get_cmd(lst);
 	if (cmd == NULL)
 	{
-		//delete lst
+		ft_delete_lst(&lst);
 		return (1);
 	}
 	//redirection

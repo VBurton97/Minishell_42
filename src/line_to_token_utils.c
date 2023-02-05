@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:25:00 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/05 17:37:07 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/05 17:57:44 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,8 @@ int	ft_is_word(char *buffer)
 	quote_state = 0;
 	while (buffer[i])
 	{
-		if (buffer[i] == '\'' && quote_state == 0)
-			quote_state = 1;
-		else if (buffer[i] == '\'' && quote_state == 1)
-			quote_state = 0;
-		else if (buffer[i] == '\"' && quote_state == 0)
-			quote_state = 2;
-		else if (buffer[i] == '\"' && quote_state == 2)
-			quote_state = 0;
-		else if (buffer[i] == ' ' && quote_state == 0)
+		quote_state = ft_set_quote_state(buffer[i], quote_state);
+		if (buffer[i] == ' ' && quote_state == 0)
 			break ;
 		else if (ft_is_operator(buffer + i) && quote_state == 0)
 			break ;
@@ -84,4 +77,24 @@ int	ft_is_word(char *buffer)
 	if (buffer[i] == '\0' && quote_state != 0)
 		return (-1);
 	return (i);
+}
+
+
+/*
+    c is a char in the buffer
+    quote_state is the current quote state
+    should return the new quote_state
+	return the same quote_state if c is not a quote
+*/
+int ft_set_quote_state(char c, int quote_state)
+{
+    if (c == '\'' && quote_state == 0)
+		quote_state = 1;
+	else if (c == '\'' && quote_state == 1)
+		quote_state = 0;
+	else if (c == '\"' && quote_state == 0)
+		quote_state = 2;
+	else if (c == '\"' && quote_state == 2)
+		quote_state = 0;
+	return (quote_state);
 }
