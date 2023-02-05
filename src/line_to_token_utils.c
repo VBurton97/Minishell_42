@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:25:00 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/04 23:19:27 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/05 17:37:07 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,51 +48,40 @@ int	ft_is_operator(char *buffer)
 }
 
 /*
-	return 0 if the first char is not a quote
-	if buffer = "12345"
-	the function will return 7 (12345 plus the two quote)
-	return -1 if the quote is not closed
-*/
-int	ft_is_quote(char *buffer)
-{
-	int	i;
-
-	i = 1;
-	if (buffer[0] != '\'' && buffer[0] != '\"')
-	{
-		return (0);
-	}
-	while (buffer[i] && buffer[i] != buffer[0])	
-	{
-		i++;
-	}
-	if (buffer[i] == '\0')
-	{
-		return (-1);
-	}
-	while (!ft_is_operator(buffer + i) && buffer[i] != ' ' && buffer[i])
-	{
-		i++;
-	}
-	return (i);
-}
-
-/*
-	if the token is neither an operator, a quote, a space
-	then it is a word
-	from the start of the buffer, the function will advance
-	until it meet a an operator, a quote, or a space
-	and then return the length of word
+	examples of word:
+	Hello
+	"Hello"
+	"He"llo
+	He"llo"
+	He"ll"o
+	a word is delimitted by an operator or space (unquoted of course)
+	this function return the length of word, quote included
+	if quote is not closed, return -1 
 */
 int	ft_is_word(char *buffer)
 {
 	int	i;
+	int	quote_state;
 
 	i = 0;
-	while (buffer[i] && buffer[i] != ' ' && 
-		!ft_is_operator(buffer + i) /*&& !ft_is_quote(buffer + i)*/)
+	quote_state = 0;
+	while (buffer[i])
 	{
+		if (buffer[i] == '\'' && quote_state == 0)
+			quote_state = 1;
+		else if (buffer[i] == '\'' && quote_state == 1)
+			quote_state = 0;
+		else if (buffer[i] == '\"' && quote_state == 0)
+			quote_state = 2;
+		else if (buffer[i] == '\"' && quote_state == 2)
+			quote_state = 0;
+		else if (buffer[i] == ' ' && quote_state == 0)
+			break ;
+		else if (ft_is_operator(buffer + i) && quote_state == 0)
+			break ;
 		i++;
 	}
+	if (buffer[i] == '\0' && quote_state != 0)
+		return (-1);
 	return (i);
 }

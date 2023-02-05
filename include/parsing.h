@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/04 22:09:45 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/05 17:37:18 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	ft_delete_lst(t_token **lst);
 
 /***  line_to_token_utils.c  ***/
 int 	ft_is_operator(char *buffer);
-int		ft_is_quote(char *buffer);
 int		ft_is_word(char *buffer);
 t_token	*ft_get_token(char **buffer, int length);
 
