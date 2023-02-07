@@ -6,11 +6,24 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 22:29:44 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/07 16:01:55 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/07 17:05:08 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+static void	ft_init_local_var(char *word, int *quote_st, int *i, char **new_w)
+{
+	*i = 0;
+	*quote_st = ft_set_quote_state(word[0], 0);
+	*new_w = malloc(sizeof(char));
+	if (*new_w == NULL)
+	{
+		write(2, "malloc fails\n", 13);
+		return ;
+	}
+	**new_w = '\0';
+}
 
 /*
     content of envp has the form:
@@ -28,9 +41,7 @@ char	*ft_dollar_exps(char *word, t_token *env_lst)
 	int		i;
 	char	*new_word;
 
-	i = 0;
-	quote_state = ft_set_quote_state(word[i], 0);
-	new_word = ft_calloc(1, sizeof(char));
+	ft_init_local_var(word, &quote_state, &i, &new_word);
 	if (!new_word)
 		return (NULL);
 	while (word[i])
@@ -60,7 +71,7 @@ char	*ft_dollar_exps(char *word, t_token *env_lst)
 int	ft_dollar_exps_lst(t_token *lst, t_token *env_lst)
 {
 	char	*exp_word;
-	
+
 	while (lst)
 	{
 		exp_word = ft_dollar_exps(lst->word, env_lst);
