@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:25:00 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/07 13:49:40 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/07 15:18:07 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_is_operator(char *buffer)
 {
 	if (ft_strncmp(buffer, "<<", 2) == 0)
 		return (2);
-    if (ft_strncmp(buffer, ">>", 2) == 0)
+	if (ft_strncmp(buffer, ">>", 2) == 0)
 		return (2);
 	if (ft_strncmp(buffer, "<", 1) == 0)
 		return (1);
@@ -79,16 +79,15 @@ int	ft_is_word(char *buffer)
 	return (i);
 }
 
-
 /*
     c is a char in the buffer
     quote_state is the current quote state
     should return the new quote_state
 	return the same quote_state if c is not a quote
 */
-int ft_set_quote_state(char c, int quote_state)
+int	ft_set_quote_state(char c, int quote_state)
 {
-    if (c == '\'' && quote_state == 0)
+	if (c == '\'' && quote_state == 0)
 		quote_state = 1;
 	else if (c == '\'' && quote_state == 1)
 		quote_state = 0;

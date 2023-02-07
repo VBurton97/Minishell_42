@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:45:02 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/07 14:54:01 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/07 15:10:24 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	new is then free, while res is returned
 	char **old is advanced accordingly
 */
-char    *ft_strjoin_1(char *new_word, char **old, int n)
+char	*ft_strjoin_1(char *new_word, char **old, int n)
 {
 	int		new_len;
 	char	*res;
@@ -28,17 +28,14 @@ char    *ft_strjoin_1(char *new_word, char **old, int n)
 	new_len = ft_strlen(new_word);
 	res = malloc(sizeof(char) * new_len + n + 2);
 	if (!res)
-	{
-		free(new_word);	
-		return (NULL);
-	}
+		return (free(new_word), NULL);
 	i = 0;
 	while (new_word[i])
 	{
 		res[i] = new_word[i];
 		i++;
 	}
-	while (i < new_len + n + 1) //1 was 2
+	while (i < new_len + n + 1)
 	{
 		res[i] = **old;
 		(*old)++;
@@ -119,12 +116,11 @@ char	*ft_add_equal(char *key)
 	i = 0;
 	while (i < n - 1)
 	{
-		new_key[i] = key[i]; 
+		new_key[i] = key[i];
 		i++;
 	}
 	new_key[i] = '=';
 	new_key[i + 1] = '\0';
-	//printf("new_key : %s\n", new_key);
 	return (new_key);
 }
 
@@ -142,12 +138,10 @@ char	*ft_get_para(char *search_key, t_token *env_lst)
 	int		len;
 
 	len = ft_strlen(search_key);
-	//printf("search_key is %s\n", search_key);
 	while (env_lst)
 	{
 		if (ft_strncmp(env_lst->word, search_key, len) == 0)
 		{
-			//printf("find: %s\n", env_lst->word);
 			return (env_lst->word + len + 1);
 		}
 		env_lst = env_lst->next;

@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:43:58 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/04 22:22:09 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/07 15:22:50 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_set_pipe(t_cmd *cmd, int n, int *p)
 	cmd[0].write_fd = dup(p[1]);
 	close(p[1]);
 	i = 1;
-	while(i < n - 1)
+	while (i < n - 1)
 	{
 		cmd[i].read_fd = dup(p[2 * (i - 1)]);
 		cmd[i].write_fd = dup(p[i * 2 + 1]);
@@ -73,25 +73,25 @@ int	*ft_malloc_pipe(int n)
 {
 	int	*p;
 	int	i;
-	
+
 	p = malloc(sizeof(int) * n * 2);
 	if (!p)
 	{
 		write(2, "malloc fails\n", 13);
-        return (NULL);
+		return (NULL);
 	}
 	i = 0;
-    while (i < 2 * n)
-    {
-        if (pipe(p + i))
-        {
-            write(2, "pipe fails\n", 11);
-            free(p);
-            return (NULL);
-        }
-        i = i + 2;
-    }
-    return (p);
+	while (i < 2 * n)
+	{
+		if (pipe(p + i))
+		{
+			write(2, "pipe fails\n", 11);
+			free(p);
+			return (NULL);
+		}
+		i = i + 2;
+	}
+	return (p);
 }
 
 /*
@@ -100,9 +100,9 @@ int	*ft_malloc_pipe(int n)
 t_cmd	*ft_malloc_cmd(int n)
 {
 	t_cmd	*cmd;
-    int		i;
+	int		i;
 
-    cmd = malloc(sizeof(t_cmd) * n);
+	cmd = malloc(sizeof(t_cmd) * n);
 	if (!cmd)
 	{
 		write(2, "malloc fails\n", 13);
@@ -123,14 +123,14 @@ t_cmd	*ft_malloc_cmd(int n)
 */
 int	ft_count_pipe(t_token *lst)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (lst)
-    {
-        if (ft_strncmp(lst->word, "|", 1) == 0)
-            i++;
-        lst = lst->next;
-    }
-    return (i);
+	{
+		if (ft_strncmp(lst->word, "|", 1) == 0)
+			i++;
+		lst = lst->next;
+	}
+	return (i);
 }

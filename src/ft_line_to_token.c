@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:36:25 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/07 13:50:32 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/07 15:19:15 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_token	*ft_line_to_token(char *buffer)
 		while (*buffer == ' ')
 			buffer++;
 		if (*buffer == '\0')
-			break;
+			break ;
 		token = ft_get_token(&buffer);
 		if (!token)
 		{
@@ -75,14 +75,13 @@ int	ft_syntax_err(t_token *lst)
 	return (0);
 }
 
-
 /*
 	return the next token
 	In case of error return NULL, ex:
     if malloc fails
     if quote not enclosed
 */
-t_token *ft_get_token(char **buffer)
+t_token	*ft_get_token(char **buffer)
 {
 	t_token	*token;
 	int		length;

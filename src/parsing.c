@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:41:29 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/05 17:45:44 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/07 15:26:08 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
     return 0
     return 1 when err
 */
-int ft_parsing(char *buffer, t_shell *shell)
+int	ft_parsing(char *buffer, t_shell *shell)
 {
-	t_token *lst;
+	t_token	*lst;
 	t_cmd	*cmd;
 
 	lst = ft_line_to_token(buffer);
