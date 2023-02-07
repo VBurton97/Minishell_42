@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:36:25 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/05 17:44:03 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/07 13:50:32 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_token *ft_get_token(char **buffer)
 	if (ft_is_operator(*buffer))
 	{
 		length = ft_is_operator(*buffer);
-		token = ft_get_token(buffer, length);
+		token = ft_is_token(buffer, length);
 	}
 	else if (ft_is_word(*buffer))
 	{
@@ -100,7 +100,7 @@ t_token *ft_get_token(char **buffer)
 			write(2, "quote not enclosed\n", 19);
 			return (NULL);
 		}
-		token = ft_get_token(buffer, length);
+		token = ft_is_token(buffer, length);
 	}
 	return (token);
 }

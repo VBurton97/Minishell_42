@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/07 13:45:14 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/07 13:57:41 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_delete_lst(t_token **lst);
 /***  line_to_token_utils.c  ***/
 int 	ft_is_operator(char *buffer);
 int		ft_is_word(char *buffer);
-t_token	*ft_get_token(char **buffer, int length);
+t_token	*ft_is_token(char **buffer, int length);
 int 	ft_set_quote_state(char c, int quote_state);
 
 /***  ft_line_to_token.c  ***/
@@ -80,6 +80,7 @@ char 	*ft_dollar_exps(char *word, t_token *env_lst);
 
 typedef struct s_shell{
 	char	**env;
+	t_token	*env_lst;
 	int		exit_status;
 	t_cmd	*cmd;
 	t_token	*parsed_input;

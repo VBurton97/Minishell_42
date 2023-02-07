@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:45:02 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/07 13:36:55 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/07 14:54:01 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char    *ft_strjoin_1(char *new_word, char **old, int n)
 		res[i] = new_word[i];
 		i++;
 	}
-	while (i < new_len + n + 2)
+	while (i < new_len + n + 1) //1 was 2
 	{
 		res[i] = **old;
 		(*old)++;
@@ -56,7 +56,7 @@ char    *ft_strjoin_1(char *new_word, char **old, int n)
 char	*ft_strjoin_2(char *new_word, char **old, t_token *env_lst)
 {
 	int		key_len;
-	int		search_key;
+	char	*search_key;
 	char	*para;
 	char	*res;
 
@@ -89,9 +89,9 @@ int	ft_delimit_dollar(char *key)
 	int	i;
 
 	i = 0;
-	while (*key)
+	while (key[i])
 	{
-		if (*key == ' ' || *key == '"')
+		if (key[i] == ' ' || key[i] == '"')
 			return (i);
 		i++;
 	}
@@ -108,22 +108,23 @@ char	*ft_add_equal(char *key)
 	int		n;
 	char	*new_key;
 
-	key++;
 	n = ft_delimit_dollar(key);
-	new_key = malloc(sizeof(char) * (n + 2));
+	new_key = malloc(sizeof(char) * (n + 1));
 	if (!new_key)
 	{
 		write(2, "malloc fails\n", 13);
 		return (NULL);
 	}
+	key++;
 	i = 0;
-	while (i < n + 1)
+	while (i < n - 1)
 	{
 		new_key[i] = key[i]; 
 		i++;
 	}
 	new_key[i] = '=';
 	new_key[i + 1] = '\0';
+	//printf("new_key : %s\n", new_key);
 	return (new_key);
 }
 
@@ -138,14 +139,17 @@ char	*ft_add_equal(char *key)
 */
 char	*ft_get_para(char *search_key, t_token *env_lst)
 {
-	int		n;
 	int		len;
 
 	len = ft_strlen(search_key);
-	while (*env_lst)
+	//printf("search_key is %s\n", search_key);
+	while (env_lst)
 	{
-		if (ft_strncmp(env_lst->word, search_key, len))
-			return (env_lst->word);
+		if (ft_strncmp(env_lst->word, search_key, len) == 0)
+		{
+			//printf("find: %s\n", env_lst->word);
+			return (env_lst->word + len + 1);
+		}
 		env_lst = env_lst->next;
 	}
 	return (NULL);

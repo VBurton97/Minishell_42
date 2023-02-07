@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:25:00 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/05 17:57:44 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/07 13:49:40 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 	buffer pointer will advance accordingly
 	return NULL if malloc fails
 */
-t_token	*ft_get_token(char **buffer, int length)
+t_token	*ft_is_token(char **buffer, int length)
 {
 	t_token	*token;
 
