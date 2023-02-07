@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 22:29:44 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/05 18:07:43 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/07 13:44:25 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,35 @@
     if *word has part that's quoted by single quote, no change
     otherwise, every "$key" will be replaced with "value"
     $key is delimited by space or double quote
+
+	the calling function should free word and replace 
+	it with the returned new_word
 */
-char *ft_dollar_exps(char *word, char **envp)
+char *ft_dollar_exps(char *word, t_token *env_lst)
 {
     int 	quote_state;
     int 	i;
 	char	*new_word;
 
-    quote_state = 0;
     i = 0;
-    while (*word)
+	quote_state = ft_set_quote_state(word[i], 0);
+    while (word[i])
     {
-        //if (ft_is_dollar && quote_state != 1)
-        //	strjoin everything before (start from word[j])
-        //	strjoin env para
-        //	advance j accordingly
-        //else if meet a quote 
-		//	change quote state (note: quote might be within quote)
-        //else
-		//  word++;
+        if (word[i] == '$' && word[i + 1] && quote_state != 1)
+        {
+            new_word = ft_strjoin_1(new_word, &word, i - 1);
+            if (!new_word)
+                return (NULL);
+            new_word = ft_strjoin_2(new_word, &word, envp);
+            if (!new_word)
+                return (NULL);
+        }
+		else
+			i++;
+		quote_state = ft_set_quote_state(word[i], quote_state);
     }
-	//if word[i] is not \0
-	//	strjoin the rest
-}
-
-
-/*
-    return new string, which concatenate new with old
-    old string have size n
-*/
-char    *ft_strjoin_exps(char *new, char *old, int n)
-{
-    
+	new_word = ft_strjoin_1(new_word, &word, i - 1);
+	if (!new_word)
+        return (NULL);
+	return (new_word);
 }
