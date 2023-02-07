@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:45:02 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/07 15:10:24 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/07 16:15:40 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*ft_strjoin_2(char *new_word, char **old, t_token *env_lst)
 
 /*
 	the function will count until it meets a delimiter
-	a delimiter is a space, double quote or null
+	a delimiter is a space, double quote, single quote or null
 	if key is $TEST(space)SOMETHINGELSE, return 5
 	if key is $PWD(space)SOMETHINGELSE, return 4
 	if key is $PWD(double quote)SOMETHINGELSE, return 4
@@ -88,7 +88,7 @@ int	ft_delimit_dollar(char *key)
 	i = 0;
 	while (key[i])
 	{
-		if (key[i] == ' ' || key[i] == '"')
+		if (key[i] == ' ' || key[i] == '"' || key[i] == '\'')
 			return (i);
 		i++;
 	}

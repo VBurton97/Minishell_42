@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/07 15:28:17 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/07 15:53:37 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,10 @@ char	*ft_get_para(char *search_key, t_token *env_lst);
 
 /***  ft_dollar_exps  ***/
 char	*ft_dollar_exps(char *word, t_token *env_lst);
+
+/***  ft_get_env.c  ***/
+int		ft_get_env(t_token **env_lst);
+int	ft_dollar_exps_lst(t_token *lst, t_token *env_lst);
 
 typedef struct s_shell{
 	char	**env;
