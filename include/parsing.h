@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/07 15:53:37 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/08 16:26:12 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PARSING_H
 
 # include "../libftprintf/ft_printf.h"
-# include "../libftprintf/libft/libft.h" 
+# include "../libftprintf/libft/libft.h"
 
 # include <stdio.h>
 # include <readline/readline.h>
@@ -81,6 +81,11 @@ char	*ft_dollar_exps(char *word, t_token *env_lst);
 /***  ft_get_env.c  ***/
 int		ft_get_env(t_token **env_lst);
 int	ft_dollar_exps_lst(t_token *lst, t_token *env_lst);
+
+/***  ft_get_homedir  ***/
+char	*ft_get_homedir(char *login);
+char	*ft_find_line(char *login);
+
 
 typedef struct s_shell{
 	char	**env;

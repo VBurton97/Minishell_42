@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:16:30 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/03 14:14:02 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/08 16:24:54 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define LIBFT_H
 
 # include <stdlib.h>
-# include <unistd.h> 
+# include <unistd.h>
+# include "get_next_line.h"
 
 void	ft_bzero(void *s, size_t n);
 int		ft_isalnum(int c);

@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/07 15:53:10 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/08 16:27:55 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_print_lst(t_token *lst)
 	}
 }
 
+/*
 int main()
 {
 	t_shell		shell;
@@ -49,4 +50,19 @@ int main()
 	ft_print_lst(shell.parsed_input);
 	printf("\n");
 	ft_delete_lst(&(shell.parsed_input));
+}
+*/
+
+int main(int argc, char **argv)
+{
+	char *homedir;
+
+	if (argc != 2)
+	{
+		write(2, "need 2 args\n", 12);
+		return (0);
+	}
+	homedir = ft_get_homedir(argv[1]);
+	ft_printf("homedir of %s is: %s\n", argv[1], homedir);
+	free(homedir);
 }
