@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/08 16:27:55 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/08 18:35:29 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,21 @@ int main()
 }
 */
 
-int main(int argc, char **argv)
+int main()
 {
-	char *homedir;
-
-	if (argc != 2)
+	t_shell		shell;
+	
+	shell.env_lst = NULL;
+	if (ft_get_env(&(shell.env_lst)))
 	{
-		write(2, "need 2 args\n", 12);
 		return (0);
 	}
-	homedir = ft_get_homedir(argv[1]);
-	ft_printf("homedir of %s is: %s\n", argv[1], homedir);
-	free(homedir);
+	
+	char	*word;
+	char	*new_word;
+
+	word = "~sasha/ecole_42";
+	new_word = ft_tilde_exps(word, shell.env_lst);
+	ft_printf("word: %s \nnew_word: %s\n", word, new_word);
+	free(new_word);
 }

@@ -6,7 +6,7 @@
 #    By: sasha <sasha@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/02/08 16:24:07 by sasha            ###   ########.fr        #
+#    Updated: 2023/02/08 18:30:01 by sasha            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIST_SRC	=	token_utils.c line_to_token_utils.c \
 				ft_line_to_token.c ft_set_pipe.c \
 				dollar_exp_utils.c ft_dollar_exps.c\
 				ft_get_env.c\
-				ft_get_homedir.c\
+				ft_get_homedir.c ft_tilde_exps.c \
 				parsing.c\
 				test.c
 
