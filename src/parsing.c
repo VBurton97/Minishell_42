@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:41:29 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/09 13:25:49 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/09 16:20:19 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_parsing(char *buffer, t_shell *shell)
 	//cmd = ft_get_cmd(lst);
 	//if (cmd == NULL)
 //	{
-		ft_delete_lst(&lst);
+	//	ft_delete_lst(&lst);
 	//	return (1);
 	//}
 	if (ft_exps_and_split(lst, shell->env_lst))

@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/09 13:28:55 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/09 16:19:06 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,11 @@ int main()
 		free(buffer);
 		ft_delete_lst(&(shell.parsed_input));
 		ft_delete_lst(&(shell.env_lst));
+		write(2, "parsing fails\n", 14);
 		return (0);
 	}
 	free(buffer);
-	rl_clear_history();
+	//rl_clear_history();
 	ft_print_lst(shell.parsed_input);
 	printf("\n");
 	ft_delete_lst(&(shell.parsed_input));
