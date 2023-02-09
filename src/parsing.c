@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:41:29 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/09 13:04:56 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/09 13:25:49 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 int	ft_parsing(char *buffer, t_shell *shell)
 {
 	t_token	*lst;
-	t_cmd	*cmd;
+	//t_cmd	*cmd;
 
 	lst = ft_line_to_token(buffer);
 	if (!lst || ft_syntax_err(lst))
@@ -27,12 +27,12 @@ int	ft_parsing(char *buffer, t_shell *shell)
 		ft_delete_lst(&lst);
 		return (1);
 	}
-	cmd = ft_get_cmd(lst);
-	if (cmd == NULL)
-	{
+	//cmd = ft_get_cmd(lst);
+	//if (cmd == NULL)
+//	{
 		ft_delete_lst(&lst);
-		return (1);
-	}
+	//	return (1);
+	//}
 	if (ft_exps_and_split(lst, shell->env_lst))
 	{
 		ft_delete_lst(&lst);
@@ -43,6 +43,6 @@ int	ft_parsing(char *buffer, t_shell *shell)
 	
 	//finish init cmd
 	shell->parsed_input = lst;
-	shell->cmd = cmd;
+//	shell->cmd = cmd;
 	return (0);
 }
