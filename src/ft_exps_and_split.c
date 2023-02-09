@@ -6,11 +6,15 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:43:52 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/09 13:20:49 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/09 17:02:45 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+/*
+    if it's a heredoc, remove only quote, don't expand
+*/
 
 int	ft_exps_and_split(t_token *lst, t_token *env_lst)
 {
