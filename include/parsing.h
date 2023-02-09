@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/08 18:29:47 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/09 13:07:52 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,19 @@ char	*ft_get_homedir(char *login);
 char	*ft_find_line(char *login);
 int		ft_delimit_login(char *login);
 
-/***  ft_tilde_exps.c  ***/
+/***  tilde_exps_utils.c  ***/
 char	*ft_tilde_exps(char *word, t_token *env_lst);
 char	*ft_case_tilde_login(char *word);
 char	*ft_case_tilde_slash(char *word, char *home);
 char	*ft_case_tilde(char *word, char *home);
 char	*ft_get_home(t_token *env_lst);
+
+/***  ft_tilde_exps.c  ***/
+int ft_tilde_exps_lst(t_token *lst, t_token *env_lst);
+
+
+/***  ft_exps_and_split.c  ***/
+int	ft_exps_and_split(t_token *lst, t_token *env_lst);
 
 
 typedef struct s_shell{

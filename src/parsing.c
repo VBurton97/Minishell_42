@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:41:29 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/07 15:26:08 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/09 13:04:56 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,14 @@ int	ft_parsing(char *buffer, t_shell *shell)
 		ft_delete_lst(&lst);
 		return (1);
 	}
-	//redirection
+	if (ft_exps_and_split(lst, shell->env_lst))
+	{
+		ft_delete_lst(&lst);
+		return (1);
+	}
 	//word expansion(tild; env para; splitting; wild card; rm quote)
+	//redirection
+	
 	//finish init cmd
 	shell->parsed_input = lst;
 	shell->cmd = cmd;

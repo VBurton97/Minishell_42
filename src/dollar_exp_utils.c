@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_exp_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:45:02 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/07 16:15:40 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/09 13:16:47 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ char	*ft_get_para(char *search_key, t_token *env_lst)
 	{
 		if (ft_strncmp(env_lst->word, search_key, len) == 0)
 		{
-			return (env_lst->word + len + 1);
+			return (env_lst->word + len);
 		}
 		env_lst = env_lst->next;
 	}
