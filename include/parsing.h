@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/09 13:07:52 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/09 16:50:56 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,12 @@ typedef struct s_cmd	t_cmd;
 	The content of the buffer will be divided into token
 	according to the rule described in "Token recogtion" on
 	pubs.opengroup.org
+
+	if is_op = 1, then the token is an operator
 */
 typedef struct s_token{
 	char	*word;
+	int		is_op;
 	t_token	*next;
 	t_token	*prev;
 }	t_token;
