@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:43:52 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/10 15:58:28 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/10 16:25:10 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,22 @@
 /*
     if it's a heredoc, remove only quote, don't expand
 */
-
 int	ft_exps_and_split(t_token **lst, t_token *env_lst)
 {
 	if (ft_dollar_exps_lst(*lst, env_lst))
     {
-        write(2, "exps fails\n", 11);
 		return (1);
     }
 	if (ft_tilde_exps_lst(*lst, env_lst))
     {
-        write(2, "exps fails\n", 11);
 		return (1);
     }
 	if (ft_syntax_err_2(*lst))
 	{
-		write(2, "ambiguous redirection\n", 22);
 		return (1);
 	}
    	if (ft_split_lst(lst))
 	{
-		write(2, "split fails\n", 12);
 		return (1);
 	}
     //remove quote
@@ -61,7 +56,10 @@ int	ft_syntax_err_2(t_token *lst)
 		else if (lst->prev && ft_strncmp(lst->prev->word, "<", 2) == 0)
 			err = ft_exist_unquoted_space(lst->word);
 		if (err == 1)
+		{
+			write(2, "ambiguous redirection\n", 22);
 			return (1);
+		}
 		lst = lst->next;
 	}
 	return (0);

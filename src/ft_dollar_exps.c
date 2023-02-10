@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 22:29:44 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/10 12:14:42 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/10 16:25:06 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	ft_dollar_exps_lst(t_token *lst, t_token *env_lst)
 			exp_word = ft_dollar_exps(lst->word, env_lst);
 			if (!exp_word)
 			{
+				write(2, "exps fails\n", 11);
 				return (1);
 			}
 			free(lst->word);

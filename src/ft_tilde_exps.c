@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:52:44 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/10 12:13:40 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/10 16:24:35 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int ft_tilde_exps_lst(t_token *lst, t_token *env_lst)
 				new_word = ft_tilde_exps(lst->word, env_lst);
 				if (!new_word)
 				{
+					write(2, "tilde exps fails\n", 17);
 					return (1);
 				}
             	free(lst->word);

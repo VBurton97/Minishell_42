@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 14:43:12 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/10 16:15:43 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/10 16:23:04 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ int ft_split_lst(t_token **lst)
 	while ((*lst)->prev != NULL)
 	{
 		*lst = (*lst)->prev;
+	}
+	if (err == 1)
+	{
+		write(2, "split fails\n", 12);
 	}
 	return (err);
 }
