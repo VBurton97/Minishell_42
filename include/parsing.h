@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/09 16:50:56 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/10 12:34:12 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ int ft_tilde_exps_lst(t_token *lst, t_token *env_lst);
 
 /***  ft_exps_and_split.c  ***/
 int	ft_exps_and_split(t_token *lst, t_token *env_lst);
+int	ft_syntax_err_2(t_token *lst);
+int	ft_exist_unquoted_space(char *word);
 
 
 typedef struct s_shell{

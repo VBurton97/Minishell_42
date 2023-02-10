@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/09 16:19:06 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/10 12:44:39 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int main()
 	if (ft_parsing(buffer, &shell))
 	{
 		free(buffer);
-		ft_delete_lst(&(shell.parsed_input));
 		ft_delete_lst(&(shell.env_lst));
 		write(2, "parsing fails\n", 14);
 		return (0);
