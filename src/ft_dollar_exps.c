@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dollar_exps.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 22:29:44 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/07 17:05:08 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/10 12:14:42 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ char	*ft_dollar_exps(char *word, t_token *env_lst)
 }
 
 /*
+	do not expand if it's an heredoc
 	iterate through the lst and apply word expansion to all token
 	in case of error, return 1
 	the calling function should delete the list
@@ -74,13 +75,18 @@ int	ft_dollar_exps_lst(t_token *lst, t_token *env_lst)
 
 	while (lst)
 	{
-		exp_word = ft_dollar_exps(lst->word, env_lst);
-		if (!exp_word)
+		if (lst->prev && ft_strncmp(lst->prev->word, "<<", 3) == 0)
+			;
+		else
 		{
-			return (1);
+			exp_word = ft_dollar_exps(lst->word, env_lst);
+			if (!exp_word)
+			{
+				return (1);
+			}
+			free(lst->word);
+			lst->word = exp_word;
 		}
-		free(lst->word);
-		lst->word = exp_word;
 		lst = lst->next;
 	}
 	return (0);
