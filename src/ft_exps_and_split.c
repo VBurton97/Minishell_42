@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:43:52 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/10 12:40:04 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/10 15:58:28 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,28 @@
     if it's a heredoc, remove only quote, don't expand
 */
 
-int	ft_exps_and_split(t_token *lst, t_token *env_lst)
+int	ft_exps_and_split(t_token **lst, t_token *env_lst)
 {
-    if (ft_dollar_exps_lst(lst, env_lst))
+	if (ft_dollar_exps_lst(*lst, env_lst))
     {
         write(2, "exps fails\n", 11);
 		return (1);
     }
-	if (ft_tilde_exps_lst(lst, env_lst))
+	if (ft_tilde_exps_lst(*lst, env_lst))
     {
         write(2, "exps fails\n", 11);
 		return (1);
     }
-	if (ft_syntax_err_2(lst))
+	if (ft_syntax_err_2(*lst))
 	{
 		write(2, "ambiguous redirection\n", 22);
 		return (1);
 	}
-    //split
+   	if (ft_split_lst(lst))
+	{
+		write(2, "split fails\n", 12);
+		return (1);
+	}
     //remove quote
     return (0);
 }
@@ -64,7 +68,7 @@ int	ft_syntax_err_2(t_token *lst)
 }
 
 /*
-	return 1 if the word contains unquoted space
+	return a non zero number if the word contains unquoted space
 */
 int	ft_exist_unquoted_space(char *word)
 {
@@ -75,10 +79,10 @@ int	ft_exist_unquoted_space(char *word)
 	quote_state = ft_set_quote_state(word[0], 0);
 	while (word[i])
 	{
-		quote_state = ft_set_quote_state(word[i], quote_state);
 		if (word[i] == ' ' && quote_state == 0)
-			return (1);
+			return (i);
 		i++;
+		quote_state = ft_set_quote_state(word[i], quote_state);
 	}
 	return (0);
 }

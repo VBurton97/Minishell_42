@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/10 12:34:12 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/10 16:07:03 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ typedef struct s_token{
 	t_token	*next;
 	t_token	*prev;
 }	t_token;
+
+void	ft_print_lst(t_token *lst);
+
 
 /***  token_utils.c  ***/
 t_token	*ft_new_token(char *str, int size);
@@ -100,12 +103,14 @@ char	*ft_get_home(t_token *env_lst);
 /***  ft_tilde_exps.c  ***/
 int ft_tilde_exps_lst(t_token *lst, t_token *env_lst);
 
-
 /***  ft_exps_and_split.c  ***/
-int	ft_exps_and_split(t_token *lst, t_token *env_lst);
+int	ft_exps_and_split(t_token **lst, t_token *env_lst);
 int	ft_syntax_err_2(t_token *lst);
 int	ft_exist_unquoted_space(char *word);
 
+/***  ft_field_split.c  ***/
+int ft_split_lst(t_token **lst);
+int ft_split_word(t_token **node);
 
 typedef struct s_shell{
 	char	**env;
