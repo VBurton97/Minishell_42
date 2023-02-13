@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/10 16:07:03 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/13 12:43:00 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,10 @@ int	ft_exist_unquoted_space(char *word);
 /***  ft_field_split.c  ***/
 int ft_split_lst(t_token **lst);
 int ft_split_word(t_token **node);
+
+/***	ft_rm_quote.c	***/
+void	ft_rm_quote_lst(t_token *lst);
+void	ft_rm_quote_word(char *word);
 
 typedef struct s_shell{
 	char	**env;

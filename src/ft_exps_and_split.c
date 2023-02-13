@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:43:52 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/10 16:25:10 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/13 12:42:07 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_exps_and_split(t_token **lst, t_token *env_lst)
 	{
 		return (1);
 	}
-    //remove quote
+    ft_rm_quote_lst(*lst);
     return (0);
 }
 
