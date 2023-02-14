@@ -3,3 +3,6 @@
 
 #ignore all .a file
 *.a
+
+#ignore the file minishell at the root 
+/minishell
