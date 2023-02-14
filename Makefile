@@ -6,7 +6,7 @@
 #    By: sasha <sasha@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/02/14 20:32:00 by sasha            ###   ########.fr        #
+#    Updated: 2023/02/14 20:45:38 by sasha            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,21 +14,21 @@ NAME	=	minishell
 
 MAKE	=	make
 
-SRC_DIR	=	./src/parsing/ ./src/exec/ ./src/builtin/ ./src/signal/ ./src/
+SRC_DIR	=	./src/
 
 OBJ_DIR	=	./.obj/
 
 INC_DIR	=	./include/
 
-VPATH	=	$(SRC_DIR)
+VPATH	=	./src/parsing ./src/exec ./src/builtin ./src/signal
 
 LIST_PARSING	=	token_utils.c line_to_token_utils.c \
-				ft_line_to_token.c  \
-				dollar_exp_utils.c ft_dollar_exps.c\
-				ft_get_env.c\
-				ft_get_homedir.c tilde_exps_utils.c ft_tilde_exps.c ft_exps_and_split.c\
-				ft_field_split.c ft_rm_quote.c parsing.c\
-				test.c
+					ft_line_to_token.c  \
+					dollar_exp_utils.c ft_dollar_exps.c\
+					ft_get_env.c\
+					ft_get_homedir.c tilde_exps_utils.c ft_tilde_exps.c ft_exps_and_split.c\
+					ft_field_split.c ft_rm_quote.c parsing.c\
+					test.c
 
 LIST_EXEC	=
 
@@ -36,15 +36,18 @@ LIST_BUILTIN	=
 
 LIST_SIGNAL		=
 
-PARSING		=	$(addprefix $(SRC_DIR)parsing/, $(LIST_PARSING))
+PARSING_DIR		=	$(addprefix $(SRC_DIR), parsing)
 
-EXEC		=	$(addprefix $(SRC_DIR)exec/, $(LIST_EXEC))
+EXEC_DIR		=	$(addprefix $(SRC_DIR), exec)
 
-BUILTIN		=	$(addprefix $(SRC_DIR)builtin/, $(LIST_BUILTIN))
+BUILTIN_DIR		=	$(addprefix $(SRC_DIR), builtin)
 
-SIGNAL		=	$(addprefix $(SRC_DIR)signal/, $(LIST_SIGNAL))
+SIGNAL_DIR		=	$(addprefix $(SRC_DIR), signal)
 
-SRC		=	$(PARSING) $(EXEC) $(BUILTIN) $(SIGNAL) 
+SRC		=	$(addprefix $(PARSING_DIR), $(LIST_PARSING)) \
+			$(addprefix $(EXEC_DIR), $(LIST_EXEC)) \
+			$(addprefix $(BUILTIN_DIR), $(LIST_BUILTIN)) \
+			$(addprefix $(SIGNAL_DIR), $(LIST_SIGNAL))
 
 OBJ		=	$(addprefix $(OBJ_DIR), $(LIST_PARSING:.c=.o)) \
 			$(addprefix $(OBJ_DIR), $(LIST_EXEC:.c=.o)) \
