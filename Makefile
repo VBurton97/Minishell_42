@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+         #
+#    By: sasha <sasha@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/02/14 15:43:31 by hsliu            ###   ########.fr        #
+#    Updated: 2023/02/14 20:32:00 by sasha            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,17 +44,12 @@ BUILTIN		=	$(addprefix $(SRC_DIR)builtin/, $(LIST_BUILTIN))
 
 SIGNAL		=	$(addprefix $(SRC_DIR)signal/, $(LIST_SIGNAL))
 
-PARSING_O	=	$(addprefix $(OBJ_DIR)parsing/, $(LIST_PARSING:.c=.o))
-
-EXEC_O		=	$(addprefix $(OBJ_DIR)exec/, $(LIST_EXEC:.c=.o))
-
-BUILTIN_O	=	$(addprefix $(OBJ_DIR)builtin/, $(LIST_BUILTIN:.c=.o))
-
-SIGNAL_0	=	$(addprefix $(OBJ_DIR)signal/, $(LIST_SIGNAL:.c=.o))
-
 SRC		=	$(PARSING) $(EXEC) $(BUILTIN) $(SIGNAL) 
 
-OBJ		=	$(PARSING_O) $(EXEC_O) $(BUILTIN_O) $(SIGNAL_O)
+OBJ		=	$(addprefix $(OBJ_DIR), $(LIST_PARSING:.c=.o)) \
+			$(addprefix $(OBJ_DIR), $(LIST_EXEC:.c=.o)) \
+			$(addprefix $(OBJ_DIR), $(LIST_BUILTIN:.c=.o)) \
+			$(addprefix $(OBJ_DIR), $(LIST_SIGNAL:.c=.o))
 
 LIST_INC	=	parsing.h 
 
@@ -76,24 +71,11 @@ $(NAME)	:	$(OBJ_DIR) $(OBJ) $(INC) $(LIB)
 $(LIB): $(LIB_DIR)
 	$(MAKE) -C $(LIB_DIR)
 
-$(OBJ_DIR)parsing/%.o : %.c $(INC)
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR) 
-
-$(OBJ_DIR)exec/%.o : %.c $(INC)
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR) 
-
-$(OBJ_DIR)builtin/%.o : %.c $(INC)
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR) 
-
-$(OBJ_DIR)signal/%.o : %.c $(INC)
+$(OBJ_DIR)%.o : %.c $(INC)
 	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR) 
 
 $(OBJ_DIR) : 
 	mkdir -p $(OBJ_DIR)
-	mkdir -p $(OBJ_DIR)parsing
-	mkdir -p $(OBJ_DIR)exec
-	mkdir -p $(OBJ_DIR)builtin
-	mkdir -p $(OBJ_DIR)signal
 
 clean : 
 	rm -rf $(OBJ_DIR)
