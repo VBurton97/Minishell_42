@@ -1,0 +1,5 @@
+#ignore all the .obj directory and its content, 
+.obj/
+
+#ignore all .a file
+*.a
