@@ -6,7 +6,7 @@
 #    By: sasha <sasha@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/02/14 20:45:38 by sasha            ###   ########.fr        #
+#    Updated: 2023/02/15 15:41:00 by sasha            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ OBJ		=	$(addprefix $(OBJ_DIR), $(LIST_PARSING:.c=.o)) \
 			$(addprefix $(OBJ_DIR), $(LIST_BUILTIN:.c=.o)) \
 			$(addprefix $(OBJ_DIR), $(LIST_SIGNAL:.c=.o))
 
-LIST_INC	=	parsing.h 
+LIST_INC	=	minishell.h parsing.h 
 
 INC		=	$(addprefix $(INC_DIR), $(LIST_INC))
 
