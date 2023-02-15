@@ -6,7 +6,7 @@
 /*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:53:54 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/15 17:37:37 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/15 19:06:20 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_pwd(char **argv)
 {
 	char	*pwd;
 	
-	if (argv && argv[1] && ft_strncmp(argv[1], "-", 1) == 0)
+	if (argv[1] && ft_strncmp(argv[1], "-", 1) == 0)
 	{
 		write(2, "pwd: invalid option\n", 20);
 		return (1);
