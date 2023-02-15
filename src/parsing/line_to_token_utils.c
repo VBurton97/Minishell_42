@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   line_to_token_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:25:00 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/10 13:37:57 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/15 13:37:05 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-/*
-	calling this function will return the token 
-	of buffer[0 ... length - 1]
-	buffer pointer will advance accordingly
-	return NULL if malloc fails
-*/
-t_token	*ft_is_token(char **buffer, int length)
-{
-	t_token	*token;
-
-	token = ft_new_token(*buffer, length);
-	(*buffer) = (*buffer) + length;
-	return (token);
-}
 
 /*
     return 0 if it's not an operator
@@ -43,6 +28,26 @@ int	ft_is_operator(char *buffer)
 	if (ft_strncmp(buffer, ">", 1) == 0)
 		return (1);
 	if (ft_strncmp(buffer, "|", 1) == 0)
+		return (1);
+	return (0);
+}
+
+int	ft_is_redirection(char *word)
+{
+	if (ft_strncmp(word, "<<", 3) == 0)
+		return (1);
+	if (ft_strncmp(word, ">>", 3) == 0)
+		return (1);
+	if (ft_strncmp(word, "<", 2) == 0)
+		return (1);
+	if (ft_strncmp(word, ">", 2) == 0)
+		return (1);
+	return (0);
+}
+
+int	ft_is_pipe(char *word)
+{
+	if (ft_strncmp(word, "|", 2) == 0)
 		return (1);
 	return (0);
 }

@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_line_to_token.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:36:25 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/09 16:52:00 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/15 13:42:42 by sasha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+static int	ft_err_mess(void);
 
 t_token	*ft_line_to_token(char *buffer)
 {
@@ -51,28 +53,27 @@ t_token	*ft_line_to_token(char *buffer)
 */
 int	ft_syntax_err(t_token *lst)
 {
-	if (!lst)
+	if (lst == NULL)
 		return (0);
-	if (ft_strncmp(lst->word, "|", 2) == 0)
-	{
-		write(2, "syntax error\n", 13);
-		return (1);
-	}
+	if (ft_is_pipe(lst->word))
+		return (ft_err_mess());
 	while (lst->next)
 	{
-		if (ft_is_operator(lst->word) && ft_is_operator(lst->next->word))
-		{
-			write(2, "syntax error\n", 13);
-			return (1);
-		}
+		if (ft_is_redirection(lst->word) && ft_is_operator(lst->next->word))
+			return (ft_err_mess());
+		if (ft_is_pipe(lst->word) && ft_is_pipe(lst->next->word))
+			return (ft_err_mess());
 		lst = lst->next;
 	}
 	if (ft_is_operator(lst->word))
-	{
-		write(2, "syntax error\n", 13);
-		return (1);
-	}
+		return (ft_err_mess());
 	return (0);
+}
+
+static int	ft_err_mess(void)
+{
+	write(2, "syntax error\n", 13);
+	return (1);
 }
 
 /*
@@ -103,5 +104,20 @@ t_token	*ft_get_token(char **buffer)
 		token = ft_is_token(buffer, length);
 		token->is_op = 0;
 	}
+	return (token);
+}
+
+/*
+	calling this function will return the token 
+	of buffer[0 ... length - 1]
+	buffer pointer will advance accordingly
+	return NULL if malloc fails
+*/
+t_token	*ft_is_token(char **buffer, int length)
+{
+	t_token	*token;
+
+	token = ft_new_token(*buffer, length);
+	(*buffer) = (*buffer) + length;
 	return (token);
 }
