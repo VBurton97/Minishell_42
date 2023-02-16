@@ -6,13 +6,12 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 19:15:53 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/16 11:58:09 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/16 13:01:03 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-static int	ft_illegal_name(char *name);
 static t_token	*ft_new_var(char *str);
 
 /*
@@ -28,7 +27,7 @@ int	ft_export(char **argv, t_shell *shell)
 
 	if (argv[1] == NULL)
 	{
-		write(2, "export: no argument\n", 20);
+		write(2, "no argument\n", 20);
 		return (0);
 	}
 	ret = 0;
@@ -69,13 +68,13 @@ static t_token	*ft_new_var(char *str)
 	name cannot begin with number
 	if name doesn't end with '=', ignore it
 */
-static int	ft_illegal_name(char *name)
+int	ft_illegal_name(char *name)
 {
 	int	i;
 	
 	if (ft_is_digit(name[0]))
 	{
-		write(2, "export: not a valid identifier\n", 31);
+		write(2, "not a valid identifier\n", 31);
 		return (0);
 	}
 	i = 0;
@@ -83,7 +82,7 @@ static int	ft_illegal_name(char *name)
 	{
 		if (!ft_isalnum(name[i]) && name[i] != '_')
 		{
-			write(2, "export: not a valid identifier\n", 31);
+			write(2, "not a valid identifier\n", 31);
 			return (0);
 		}
 		i++;
