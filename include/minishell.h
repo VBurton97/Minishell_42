@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:37:01 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/15 15:39:56 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/16 13:58:26 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,15 @@ typedef struct s_cmd{
 	int	write_fd;
 	int	read_fd;
 }	t_cmd;
+
+/***  token_utils.c  ***/
+t_token	*ft_new_token(char *str, int size);
+void	ft_add_token(t_token **lst, t_token *token);
+t_token	*ft_extract_token(t_token **lst, t_token *token);
+void	ft_delete_token(t_token **token);
+void	ft_delete_lst(t_token **lst);
+
+/***  ft_get_env.c  ***/
+int		ft_get_env(t_token **env_lst);
 
 #endif

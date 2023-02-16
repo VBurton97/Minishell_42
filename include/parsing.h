@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/15 15:39:54 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/16 13:58:24 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,6 @@
 # include "minishell.h"
 
 void	ft_print_lst(t_token *lst);
-
-/***  token_utils.c  ***/
-t_token	*ft_new_token(char *str, int size);
-void	ft_add_token(t_token **lst, t_token *token);
-t_token	*ft_extract_token(t_token **lst, t_token *token);
-void	ft_delete_token(t_token **token);
-void	ft_delete_lst(t_token **lst);
 
 /***  line_to_token_utils.c  ***/
 int		ft_is_operator(char *buffer);
@@ -58,9 +51,6 @@ char	*ft_get_para(char *search_key, t_token *env_lst);
 /***  ft_dollar_exps  ***/
 char	*ft_dollar_exps(char *word, t_token *env_lst);
 int		ft_dollar_exps_lst(t_token *lst, t_token *env_lst);
-
-/***  ft_get_env.c  ***/
-int		ft_get_env(t_token **env_lst);
 
 /***  ft_get_homedir  ***/
 char	*ft_get_homedir(char *login);

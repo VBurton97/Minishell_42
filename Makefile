@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sasha <sasha@student.42.fr>                +#+  +:+       +#+         #
+#    By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/02/15 15:41:00 by sasha            ###   ########.fr        #
+#    Updated: 2023/02/16 13:57:11 by hsliu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,21 +20,25 @@ OBJ_DIR	=	./.obj/
 
 INC_DIR	=	./include/
 
-VPATH	=	./src/parsing ./src/exec ./src/builtin ./src/signal
+VPATH	=	./src/parsing ./src/exec ./src/builtin ./src/signal ./src/minishell
 
-LIST_PARSING	=	token_utils.c line_to_token_utils.c \
-					ft_line_to_token.c  \
-					dollar_exp_utils.c ft_dollar_exps.c\
-					ft_get_env.c\
-					ft_get_homedir.c tilde_exps_utils.c ft_tilde_exps.c ft_exps_and_split.c\
-					ft_field_split.c ft_rm_quote.c parsing.c\
+LIST_MINISHELL	=	ft_get_env.c token_utils.c \
+
+LIST_PARSING	=	line_to_token_utils.c ft_line_to_token.c  \
+					dollar_exp_utils.c ft_dollar_exps.c \
+					ft_get_homedir.c tilde_exps_utils.c ft_tilde_exps.c \
+					ft_exps_and_split.c ft_field_split.c ft_rm_quote.c \
+					parsing.c \
 					test.c
 
 LIST_EXEC	=
 
-LIST_BUILTIN	=
+LIST_BUILTIN	=	ft_cd.c ft_pwd.c ft_echo.c ft_exit.c \
+					ft_export.c ft_unset.c ft_env.c
 
 LIST_SIGNAL		=
+
+MINISHELL_DIR	=	$(addprefix $(SRC_DIR), minishell)
 
 PARSING_DIR		=	$(addprefix $(SRC_DIR), parsing)
 
@@ -44,17 +48,19 @@ BUILTIN_DIR		=	$(addprefix $(SRC_DIR), builtin)
 
 SIGNAL_DIR		=	$(addprefix $(SRC_DIR), signal)
 
-SRC		=	$(addprefix $(PARSING_DIR), $(LIST_PARSING)) \
+SRC		=	$(addprefix $(MINISHELL_DIR), $(LIST_MINISHELL)) \
+			$(addprefix $(PARSING_DIR), $(LIST_PARSING)) \
 			$(addprefix $(EXEC_DIR), $(LIST_EXEC)) \
 			$(addprefix $(BUILTIN_DIR), $(LIST_BUILTIN)) \
 			$(addprefix $(SIGNAL_DIR), $(LIST_SIGNAL))
 
-OBJ		=	$(addprefix $(OBJ_DIR), $(LIST_PARSING:.c=.o)) \
+OBJ		=	$(addprefix $(MINISHELL_DIR), $(LIST_MINISHELL:.c=.o)) \
+			$(addprefix $(OBJ_DIR), $(LIST_PARSING:.c=.o)) \
 			$(addprefix $(OBJ_DIR), $(LIST_EXEC:.c=.o)) \
 			$(addprefix $(OBJ_DIR), $(LIST_BUILTIN:.c=.o)) \
 			$(addprefix $(OBJ_DIR), $(LIST_SIGNAL:.c=.o))
 
-LIST_INC	=	minishell.h parsing.h 
+LIST_INC	=	minishell.h parsing.h builtin.h
 
 INC		=	$(addprefix $(INC_DIR), $(LIST_INC))
 
