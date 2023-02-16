@@ -6,11 +6,14 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 19:15:53 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/16 11:55:57 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/16 11:58:09 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
+
+static int	ft_illegal_name(char *name);
+static t_token	*ft_new_var(char *str);
 
 /*
 	can take multiple args
@@ -49,7 +52,7 @@ int	ft_export(char **argv, t_shell *shell)
 	str has the form NAME=VALUE, value can be an empty string
 	return NULL, if the str is not valid, or the malloc fails
 */
-t_token	*ft_new_var(char *str)
+static t_token	*ft_new_var(char *str)
 {
 	t_token	*token;
 
@@ -66,7 +69,7 @@ t_token	*ft_new_var(char *str)
 	name cannot begin with number
 	if name doesn't end with '=', ignore it
 */
-int	ft_illegal_name(char *name)
+static int	ft_illegal_name(char *name)
 {
 	int	i;
 	
