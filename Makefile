@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sasha <sasha@student.42.fr>                +#+  +:+       +#+         #
+#    By: vburton <vburton@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/02/15 15:41:00 by sasha            ###   ########.fr        #
+#    Updated: 2023/02/16 20:16:48 by vburton          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ LIST_PARSING	=	token_utils.c line_to_token_utils.c \
 					ft_field_split.c ft_rm_quote.c parsing.c\
 					test.c
 
-LIST_EXEC	=
+LIST_EXEC		=	exec.c
 
 LIST_BUILTIN	=
 
@@ -54,7 +54,7 @@ OBJ		=	$(addprefix $(OBJ_DIR), $(LIST_PARSING:.c=.o)) \
 			$(addprefix $(OBJ_DIR), $(LIST_BUILTIN:.c=.o)) \
 			$(addprefix $(OBJ_DIR), $(LIST_SIGNAL:.c=.o))
 
-LIST_INC	=	minishell.h parsing.h 
+LIST_INC	=	minishell.h parsing.h exec.h
 
 INC		=	$(addprefix $(INC_DIR), $(LIST_INC))
 
