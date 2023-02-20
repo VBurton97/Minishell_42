@@ -6,7 +6,7 @@
 /*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:06:57 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/20 11:10:40 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/20 17:06:57 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static int	ft_write_protected(char *str, int size);
 */
 int ft_echo(char **argv)
 {
-    int i;
-    
+	int i;
+	
     i = 1;
 	if (argv[1] == NULL)
         return (ft_write_protected("\n", 1));

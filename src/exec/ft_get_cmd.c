@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:50:54 by vburton           #+#    #+#             */
-/*   Updated: 2023/02/18 16:49:02 by victor           ###   ########.fr       */
+/*   Updated: 2023/02/20 17:58:30 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,20 @@
 t_token	*ft_get_lst_cmd(t_token	*lst)
 {
 	int			i;
+	t_token	*new_token;
 	t_token	*lst_cmd;
-	t_token *buffer;
+	// t_token *buffer;
 
 	i = 0;
-	lst_cmd = malloc(sizeof(t_token));
+	lst_cmd = NULL;
 	while (lst)
 	{
-		if (lst && ft_is_operator(lst->word) != 0)
+		if (lst && lst->is_op)
 		{
-			if (ft_is_operator(lst->word) == 1 && ft_strncmp(lst->word, "|", 1) == 0)
+			if (ft_strncmp(lst->word, "|", 1) == 0)
 			{
-				lst_cmd->next = ft_new_token(lst->word, ft_strlen(lst->word));
-				lst_cmd = lst_cmd->next;
+				new_token = ft_new_token(lst->word, ft_strlen(lst->word));
+				ft_add_token(&lst_cmd, new_token);
 				lst = lst->next;
 			}
 			else
@@ -38,28 +39,27 @@ t_token	*ft_get_lst_cmd(t_token	*lst)
 				lst = lst->next;
 			}
 		}
-		while (lst && ft_is_operator(lst->word) == 0)
+		while (lst && lst->is_op != 1)
 		{
 			if (i == 0)
 			{
-				lst_cmd->word = lst->word;
-				buffer = lst_cmd;
-				lst_cmd->next = ft_new_token(lst->word, ft_strlen(lst->word));
+				new_token = ft_new_token(lst->word, ft_strlen(lst->word));
+				ft_add_token(&lst_cmd, new_token);
 				i++;
 			}
 			else
 			{
 				lst_cmd->next = ft_new_token(lst->word, ft_strlen(lst->word));
-				lst_cmd = lst_cmd->next;
+				// lst_cmd = lst_cmd->next;
 			}
 			lst = lst->next;
 		}
 	}
-	return (buffer);
+	return (lst_cmd);
 }
 
 char	***ft_get_array_cmd(t_token *lst, int nb_cmd)
-{
+{	
 	int i;
 	int	j;
 	int	nb_arg;
@@ -81,7 +81,7 @@ char	***ft_get_array_cmd(t_token *lst, int nb_cmd)
 		if (buffer && ft_strncmp(buffer->word, "|", 1) == 0)
 			buffer = buffer->next;
 		cmd[i] = malloc(sizeof(char *) * (nb_arg + 1));
-		while (lst && ft_strncmp(lst->word, "|", 1) != 0)
+		while (lst && ft_strcmp(lst->word, "|") != 0 && lst->is_op != 1)
 		{
 			cmd[i][j] = ft_strdup(lst->word);
 			lst = lst->next;
