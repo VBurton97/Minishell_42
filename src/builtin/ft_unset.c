@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 11:10:19 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/16 13:18:35 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/17 18:21:35 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int	ft_unset(char **argv, t_shell *shell)
 {
 	int		ret;
 	int		i;
-	t_token	*var;
-
+	
 	if (argv[1] == NULL)
 	{
 		return (0);
@@ -35,7 +34,13 @@ int	ft_unset(char **argv, t_shell *shell)
 		{
 			ft_free_var(argv[i], &(shell->env_lst));
 		}
-		i++
+		i++;
+	}
+	shell->env_lst = shell->env_lst->prev;
+	while (shell->env_lst)
+	{
+		ft_printf("%s\n", shell->env_lst->word);
+		shell->env_lst = shell->env_lst->next;
 	}
 	return (ret);
 }
@@ -48,7 +53,7 @@ static void	ft_free_var(char *var, t_token **lst)
 	if (ft_strncmp(node->word, var, ft_strlen(var)) == 0 
 		&&ft_strncmp(node->word, var, ft_strlen(node->word)) == 0)
 	{
-		*lst = *lst->next;
+		*lst = (*lst)->next;
 		free(node->word);
 		free(node);
 		return ;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+         #
+#    By: vburton <vburton@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/02/16 13:57:11 by hsliu            ###   ########.fr        #
+#    Updated: 2023/02/20 11:22:53 by vburton          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,10 @@ LIST_PARSING	=	line_to_token_utils.c ft_line_to_token.c  \
 					parsing.c \
 					test.c
 
-LIST_EXEC	=
+LIST_EXEC		= ft_get_cmd.c ft_exec_builtin.c exec.c ft_file_descriptor.c ft_files.c \
+					ft_get_path_cmd.c ft_here_doc.c ft_free.c
 
-LIST_BUILTIN	=	ft_cd.c ft_pwd.c ft_echo.c ft_exit.c \
-					ft_export.c ft_unset.c ft_env.c
+LIST_BUILTIN	= ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_pwd.c ft_unset.c
 
 LIST_SIGNAL		=
 
@@ -60,7 +60,7 @@ OBJ		=	$(addprefix $(MINISHELL_DIR), $(LIST_MINISHELL:.c=.o)) \
 			$(addprefix $(OBJ_DIR), $(LIST_BUILTIN:.c=.o)) \
 			$(addprefix $(OBJ_DIR), $(LIST_SIGNAL:.c=.o))
 
-LIST_INC	=	minishell.h parsing.h builtin.h
+LIST_INC	=	minishell.h parsing.h exec.h builtin.h
 
 INC		=	$(addprefix $(INC_DIR), $(LIST_INC))
 

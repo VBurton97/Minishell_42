@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 19:15:53 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/16 13:01:03 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/17 15:06:41 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_export(char **argv, t_shell *shell)
 			if (var)
 				ft_add_token(&(shell->env_lst), var);
 		}
-		i++
+		i++;
 	}
 	return (ret);
 }
@@ -72,7 +72,7 @@ int	ft_illegal_name(char *name)
 {
 	int	i;
 	
-	if (ft_is_digit(name[0]))
+	if (ft_isdigit(name[0]))
 	{
 		write(2, "not a valid identifier\n", 31);
 		return (0);

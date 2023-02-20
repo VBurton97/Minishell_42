@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:05:27 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/16 12:27:53 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/17 15:06:11 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define BUILTIN_H
 
 # include "minishell.h"
+# include "parsing.h"
 
 /*
     check if the argv have to be freed 

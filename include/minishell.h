@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:37:01 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/16 13:58:26 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/20 11:23:47 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+# include <sys/types.h>
+# include <sys/wait.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -52,8 +54,8 @@ typedef struct s_shell{
 }	t_shell;
 
 typedef struct s_cmd{
-	//command
 	//args
+	char	***command;
 	int	write_fd;
 	int	read_fd;
 }	t_cmd;

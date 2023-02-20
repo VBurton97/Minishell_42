@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:18:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/15 19:08:46 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/17 15:05:34 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-static char	*ft_cd_home(t_shell *shell);
+static int	ft_cd_home(t_shell *shell);
 static int	ft_update_pwd(t_shell *shell, char *dir);
 static int	ft_count_args(char **argv);
 
