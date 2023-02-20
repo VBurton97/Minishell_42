@@ -6,7 +6,7 @@
 /*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:18:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/17 15:05:34 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/20 12:21:08 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static int	ft_cd_home(t_shell *shell)
 	t_token	*env_lst;
 	char	*home;
 
+	write(2, "cd_home\n", 8);
 	home = NULL;
 	env_lst = shell->env_lst;
 	while (env_lst)
@@ -76,6 +77,7 @@ static int	ft_cd_home(t_shell *shell)
 	}
 	if (chdir(home))
 	{
+		//write(2, home, 10);
 		perror("chdir");
 		return (1);
 	}

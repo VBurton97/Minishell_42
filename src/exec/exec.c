@@ -25,22 +25,24 @@ void	no_pipe(t_shell *shell, t_token *lst, char ***cmd)
 	{
 		while (lst)
 		{
-			if (ft_strcmp(lst->word, "<") == 0 || ft_strcmp(lst->word, "<<"))
+			if (ft_strcmp(lst->word, "<") == 0 || ft_strcmp(lst->word, "<<") == 0)
 			{
 				input = ft_read_file(lst, lst->word);
 				dup2(input, STDIN_FILENO);
 				close(input);
 			}
-			else if (ft_strcmp(lst->word, ">") == 0 || ft_strcmp(lst->word, ">>"))
+			else if (ft_strcmp(lst->word, ">") == 0 || ft_strcmp(lst->word, ">>") == 0)
 			{
 				output = ft_write_file(lst, lst->word);
 				dup2(output, STDOUT_FILENO);
 				close(output);
 			}
-			cmd_path = ft_final_path(cmd[0], shell->env);
-			if (cmd_path == NULL)
-				return ;
+			lst = lst->next;
 		}
+		cmd_path = ft_final_path(cmd[0], shell->env);
+		ft_printf("Cmd path = %s\n", cmd_path);
+		if (cmd_path == NULL)
+			return ;
 		execve(cmd_path, cmd[0], NULL);
 		exit(0);
 	}

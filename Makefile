@@ -6,7 +6,7 @@
 #    By: vburton <vburton@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/02/20 11:22:53 by vburton          ###   ########.fr        #
+#    Updated: 2023/02/20 12:17:39 by vburton          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ SRC		=	$(addprefix $(MINISHELL_DIR), $(LIST_MINISHELL)) \
 			$(addprefix $(BUILTIN_DIR), $(LIST_BUILTIN)) \
 			$(addprefix $(SIGNAL_DIR), $(LIST_SIGNAL))
 
-OBJ		=	$(addprefix $(MINISHELL_DIR), $(LIST_MINISHELL:.c=.o)) \
+OBJ		=	$(addprefix $(OBJ_DIR), $(LIST_MINISHELL:.c=.o)) \
 			$(addprefix $(OBJ_DIR), $(LIST_PARSING:.c=.o)) \
 			$(addprefix $(OBJ_DIR), $(LIST_EXEC:.c=.o)) \
 			$(addprefix $(OBJ_DIR), $(LIST_BUILTIN:.c=.o)) \
