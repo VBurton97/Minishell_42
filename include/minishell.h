@@ -6,7 +6,7 @@
 /*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:37:01 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/16 14:47:26 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/20 11:09:41 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+# include <sys/types.h>
+# include <sys/wait.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
