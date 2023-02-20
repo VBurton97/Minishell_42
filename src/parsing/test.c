@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/17 18:52:38 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/18 16:48:40 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ int main()
 	// 	ft_printf("\n");
 	// 	i++;
 	// }
-	rl_clear_history();
+	// rl_clear_history();
 	// printf("\n");
-	exec_builtin(&shell, cmd.command[0]);
+	ft_exec(&shell, lst_cmd, cmd.command, nb_cmd);
 	// i = 0;
 	// while (shell.env_lst)
 	// {

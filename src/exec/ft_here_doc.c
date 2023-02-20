@@ -2,6 +2,8 @@
 #include "minishell.h"
 #include "parsing.h"
 
+void	fils_here_doc(char *limiter, int	*fd);
+
 int	ft_here_doc(char *limiter)
 {
 	int		fd[2];
@@ -24,7 +26,7 @@ int	ft_here_doc(char *limiter)
 	return (-1);
 }
 
-void	fils_here_doc(char *limiteur, int	*fd)
+void	fils_here_doc(char *limiter, int	*fd)
 {
 	char	*next_line;
 

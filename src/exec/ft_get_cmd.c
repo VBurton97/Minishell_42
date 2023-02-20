@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:50:54 by vburton           #+#    #+#             */
-/*   Updated: 2023/02/17 18:51:26 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/18 16:49:02 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int	get_number_of_pipe(t_token	*lst)
 {
 	int	nb;
 
+	nb = 0;
 	while (lst)
 	{
 		if (ft_is_operator(lst->word) == 1 && ft_strncmp(lst->word, "|", 1) == 0)
@@ -108,37 +109,3 @@ int	get_number_of_pipe(t_token	*lst)
 	}
 	return (nb);
 }
-
-// void	ft_exec(t_token *lst)
-// {
-// 	int	i;
-// 	int	fd[2];
-// 	char	*final_path;
-// 	t_cmd cmd;
-// 	t_token *lst_cmd;
-// 	t_token *buffer_lst;
-// 	t_token *buffer_lst_cmd;
-
-// 	lst_cmd = ft_get_cmd(lst);
-// 	buffer_lst = lst;
-// 	buffer_lst_cmd = lst_cmd;
-// 	cmd = ft_get_array_cmd(lst_cmd);
-// 	if (ft_strncmp(buffer_lst->word, "<", 1))
-// 	{
-// 		cmd.read_fd = open(buffer_lst->next->word, O_RDONLY); 
-// 		dup2(cmd.read_fd, STDIN_FILENO);
-// 		close(cmd.read_fd);
-// 		buffer_lst = buffer_lst->next;
-// 	}
-// 	while (buffer_lst && ft_strncmp(buffer_lst->word, "|", 1) != 0)
-// 	{
-// 		if (ft_strncmp(buffer_lst->word, ">", 1) == 0)
-// 		{
-// 			cmd.write_fd = open(buffer_lst->next->word, O_WRONLY);
-// 			dup2(cmd.write_fd, STDOUT_FILENO);
-// 			close(cmd.write_fd);
-// 		}
-// 		buffer_lst = buffer_lst->next;
-// 	}
-// 	final_path = get_
-// }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vburton <vburton@student.42.fr>            +#+  +:+       +#+         #
+#    By: victor <victor@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/02/17 18:09:35 by vburton          ###   ########.fr        #
+#    Updated: 2023/02/18 17:22:13 by victor           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ LIST_PARSING	=	token_utils.c line_to_token_utils.c \
 					ft_field_split.c ft_rm_quote.c parsing.c\
 					test.c
 
-LIST_EXEC		= ft_get_cmd.c ft_exec_builtin.c
+LIST_EXEC		= ft_get_cmd.c ft_exec_builtin.c exec.c ft_file_descriptor.c ft_files.c \
+					ft_get_path_cmd.c ft_here_doc.c ft_free.c
 
 LIST_BUILTIN	= ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_pwd.c ft_unset.c
 

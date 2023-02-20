@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_line_to_token.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:36:25 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/15 13:42:42 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/18 16:48:01 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ t_token	*ft_get_token(char **buffer)
 	t_token	*token;
 	int		length;
 
+	token = NULL;
 	if (ft_is_operator(*buffer))
 	{
 		length = ft_is_operator(*buffer);
