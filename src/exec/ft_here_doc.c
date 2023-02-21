@@ -8,7 +8,7 @@ int	ft_here_doc(char *limiter)
 {
 	int		fd[2];
 	int		pid;
-
+	
 	if (pipe(fd) == -1)
 		return (1);
 	pid = fork();
@@ -23,7 +23,7 @@ int	ft_here_doc(char *limiter)
 		close(fd[0]);
 		waitpid(pid, NULL, 0);
 	}
-	return (-1);
+	return (0);
 }
 
 void	fils_here_doc(char *limiter, int	*fd)
@@ -31,6 +31,7 @@ void	fils_here_doc(char *limiter, int	*fd)
 	char	*next_line;
 
 	close (fd[0]);
+	ft_printf("limiter = %s\n", limiter);
 	write(1, "pipe heredoc>", 13);
 	while (1)
 	{

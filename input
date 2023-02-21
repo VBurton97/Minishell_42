@@ -1,7 +1,0 @@
-include
-input
-libftprintf
-Makefile
-minishell
-output
-src

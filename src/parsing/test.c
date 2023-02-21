@@ -6,7 +6,7 @@
 /*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/20 17:56:21 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/21 22:54:45 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,12 @@ int main()
 {
 	// int		i;
 	// int		j;
-	// int		nb_cmd;
 	t_shell	shell;
-	// t_token	*lst_cmd;
-	// t_token *lst_buffer;
-	// t_cmd	cmd;
+	t_token	*lst_cmd;
+	t_cmd	cmd;
 	
 	// i = 0;
-	// nb_cmd = 0;
+	shell.nb_pipe = 0;
 	shell.env_lst = NULL;
 	if (ft_get_env(&(shell.env_lst)))
 	{
@@ -55,13 +53,24 @@ int main()
 		return (0);
 	}
 	free(buffer);
-	ft_printf("parsed: ");
-	ft_print_lst(shell.parsed_input);
-	ft_printf("\n");
-	// lst_cmd = ft_get_lst_cmd(shell.parsed_input);
-	// lst_buffer = ft_get_lst_cmd(shell.parsed_input);
-	// nb_cmd = get_number_of_pipe(lst_buffer);
-	// cmd.command = ft_get_array_cmd(lst_cmd, nb_cmd);
+	// ft_printf("parsed: ");
+	// ft_print_lst(shell.parsed_input);
+	// ft_printf("\n");
+	lst_cmd = ft_get_lst_cmd(shell.parsed_input);
+	shell.nb_pipe = get_number_of_pipe(shell.parsed_input);
+	shell.env = get_array_env(shell.env_lst);
+	cmd.command = ft_get_array_cmd(shell.parsed_input, shell.nb_pipe);
+	int	g = 0;
+	while (cmd.command[g])
+	{
+		int	h = 0;
+		while (cmd.command[g][h])
+		{
+			ft_printf("%s\n", cmd.command[g][h]);
+			h++;
+		}
+		g++;
+	}
 
 	// ft_print_lst(lst_cmd);
 	// i = 0;
@@ -90,7 +99,7 @@ int main()
 	// 	}
 	// 	i++;
 	// }
-	// ft_exec(&shell, lst_cmd, cmd.command, nb_cmd);
+	ft_exec(&shell, lst_cmd, cmd.command);
 
 	// ft_print_lst(shell.env_lst);
 	// i = 0;
