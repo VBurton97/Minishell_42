@@ -16,7 +16,9 @@ int	    ft_read_file(t_token *lst, char *op);
 int	    ft_write_file(t_token *lst, char *op);
 char	*ft_final_path(char **cmd, char **envp);
 void	ft_free_split(char **array);
-void	ft_open_close_dup(t_token *lst, int fd[2]);
-int		first_cmds(t_shell *shell, char **cmd, int fd[2]);
+void	ft_open_close_dup(t_token *lst, t_shell *shell, int **fd);
+int		first_cmds(t_shell *shell, char **cmd, int **fd);
+void	ft_close_fd(int **fd, t_shell *shell);
+int		**ft_init_fd(int nb_pipe);
 
 #endif

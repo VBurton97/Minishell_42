@@ -6,7 +6,7 @@
 /*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:37:01 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/21 16:40:53 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/22 17:48:04 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct s_shell{
 	int		nb_pipe;
 	char	*path_cmd;
 	char	**env;
+	int		input;
+	int		output;
 	t_token	*env_lst;
 	int		exit_status;
 	t_cmd	*cmd;

@@ -3,39 +3,33 @@
 #include "exec.h"
 #include "builtin.h"
 
-void	no_pipe(t_shell *shell, t_token *lst, char ***cmd, int fd[2]);
+void	no_pipe(t_shell *shell, t_token *lst, char ***cmd);
 
 void	ft_exec(t_shell *shell, t_token *lst, char ***cmd)
 {
-	int	fd[2];
-	int	save_stdout;
-	int	save_stdin;
+	int	**fd;
 
-	fd[0] = 0;
-	fd[1] = 1;
+	ft_printf("nb_pipe = %d\n", shell->nb_pipe);
+	fd = ft_init_fd(shell->nb_pipe);
 	shell->i = 0;
-	save_stdout = dup(STDOUT_FILENO);
-	save_stdin = dup(STDIN_FILENO);
 	if (shell->nb_pipe == 0)
 	{
 		while (shell->parsed_input)
 		{
-			ft_open_close_dup(shell->parsed_input, fd);
+			ft_open_close_dup(shell->parsed_input, shell, fd);
 			shell->parsed_input = shell->parsed_input->next;
 		}
-		if (dup2(fd[1], STDOUT_FILENO) == -1)
-			ft_printf("Error while duplicating et i = %d\n", shell->i);
-		if (dup2(fd[0], STDIN_FILENO) == -1)
-			ft_printf("Error while duplicatinget i = %d\n", shell->i);
-		no_pipe(shell, lst, cmd, fd);
-		close(fd[1]);
-		close(fd[0]);
+		no_pipe(shell, lst, cmd);
 	}
 	else
 	{
 		shell->pid = malloc(sizeof(int) * shell->nb_pipe);
 		while (shell->i <= shell->nb_pipe)
+		{
 			first_cmds(shell, cmd[shell->i], fd);
+			ft_close_fd(fd, shell);
+			shell->i++;
+		}
 		shell->i = 0;
 		while (shell->i < shell->nb_pipe)
 		{
@@ -43,13 +37,10 @@ void	ft_exec(t_shell *shell, t_token *lst, char ***cmd)
 			shell->i++;
 		}
 	}
-	dup2(save_stdout, STDOUT_FILENO);
-	dup2(save_stdin, STDIN_FILENO);
-	close(save_stdout);
-	close(save_stdin);
+	// ft_close_fd(fd, shell);
 }
 
-void	no_pipe(t_shell *shell, t_token *lst, char ***cmd, int fd[2])
+void	no_pipe(t_shell *shell, t_token *lst, char ***cmd)
 {
 	char	*cmd_path;
 
@@ -60,7 +51,6 @@ void	no_pipe(t_shell *shell, t_token *lst, char ***cmd, int fd[2])
 	{
 		while (lst)
 		{
-			ft_open_close_dup(lst, fd);
 			cmd_path = ft_final_path(cmd[0], shell->env);
 			if (cmd_path == NULL)
 				return ;
