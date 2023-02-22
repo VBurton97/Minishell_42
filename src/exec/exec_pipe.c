@@ -7,7 +7,6 @@ void	childs(t_shell *shell, char **cmd, int fd[2]);
 
 int	first_cmds(t_shell *shell, char **cmd, int fd[2])
 {
-		// dprintf(2, "cmd first cmd = %s\n", cmd[0]);
 	if (pipe(fd) == -1)
 		perror("An error as occured while creating the pipe");
 	while (shell->parsed_input && ft_strcmp(shell->parsed_input->word, "|") != 0)

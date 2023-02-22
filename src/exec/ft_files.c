@@ -8,7 +8,7 @@ int	ft_read_file(t_token *lst, char *op)
 
 	lst = lst->next;
 	input = -1;
-	if (access(lst->word, R_OK) == 0)
+	if (access(lst->word, R_OK) != 0)
 		perror(lst->word);
 	else if (ft_strcmp(op, "<") == 0)
 		input = open(lst->word, O_RDONLY);

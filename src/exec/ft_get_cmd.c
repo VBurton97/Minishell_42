@@ -66,6 +66,8 @@ char	***ft_get_array_cmd(t_token *lst, int nb_cmd)
 		{
 			if (ft_strcmp(buffer->word, "|") == 0)
 				break ;
+			else if (buffer->is_op > 0)
+				buffer = buffer->next;
 			else if (buffer->is_op == 0)
 				nb_arg++;
 			buffer = buffer->next;
@@ -78,16 +80,13 @@ char	***ft_get_array_cmd(t_token *lst, int nb_cmd)
 			if (ft_strcmp(lst->word, "|") == 0)
 				break;
 			else if (lst->is_op > 0)
-			{
 				lst = lst->next;
-				lst = lst->next;
-			}
 			else
 			{
 				cmd[i][j] = ft_strdup(lst->word);
-				lst = lst->next;
+				j++;
 			}
-			j++;
+			lst = lst->next;
 		}
 		if (lst)
 			lst = lst->next;

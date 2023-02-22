@@ -6,7 +6,7 @@
 /*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/21 22:54:45 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/22 10:40:26 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,17 @@ int main()
 	shell.nb_pipe = get_number_of_pipe(shell.parsed_input);
 	shell.env = get_array_env(shell.env_lst);
 	cmd.command = ft_get_array_cmd(shell.parsed_input, shell.nb_pipe);
-	int	g = 0;
-	while (cmd.command[g])
-	{
-		int	h = 0;
-		while (cmd.command[g][h])
-		{
-			ft_printf("%s\n", cmd.command[g][h]);
-			h++;
-		}
-		g++;
-	}
+	// int	g = 0;
+	// while (cmd.command[g])
+	// {
+	// 	int	h = 0;
+	// 	while (cmd.command[g][h])
+	// 	{
+	// 		ft_printf("g = %d et cmd = %s\n", g, cmd.command[g][h]);
+	// 		h++;
+	// 	}
+	// 	g++;
+	// }
 
 	// ft_print_lst(lst_cmd);
 	// i = 0;
