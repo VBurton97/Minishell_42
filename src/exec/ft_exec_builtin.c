@@ -5,6 +5,11 @@
 
 int	exec_builtin(t_shell *shell, char **cmd)
 {
+	// while (shell->parsed_input && ft_strcmp(shell->parsed_input->word, "|") != 0)
+	// {
+	// 	ft_open_close_dup(shell->parsed_input, fd);
+	// 	shell->parsed_input = shell->parsed_input->next;
+	// }
 	if (ft_strcmp(cmd[0], "cd") == 0)
 		ft_cd(cmd, shell);
 	else if (ft_strcmp(cmd[0], "echo") == 0)
