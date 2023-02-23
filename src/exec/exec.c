@@ -56,7 +56,7 @@ void	no_pipe(t_shell *shell, t_token *lst, char ***cmd)
 				return ;
 			lst = lst->next;
 		}
-		execve(cmd_path, cmd[0], NULL);
+		execve(cmd_path, cmd[0], shell->env);
 		exit(0);
 	}
 }
