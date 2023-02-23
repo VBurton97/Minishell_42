@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 19:15:53 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/23 17:33:25 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/23 17:42:50 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ static void	ft_add_to_lst(t_token **env_lst, t_token *var)
 	prev = node->prev;
 	next = node->next;
 	var->next = next;
-	next->prev = var;
+	if (next)
+		next->prev = var;
 	if (node == *env_lst)
 		*env_lst = var;
 	else
