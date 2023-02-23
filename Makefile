@@ -6,7 +6,7 @@
 #    By: vburton <vburton@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/02/22 17:13:24 by vburton          ###   ########.fr        #
+#    Updated: 2023/02/23 14:21:57 by vburton          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,9 @@ LIST_PARSING	=	token_utils.c line_to_token_utils.c \
 					test.c
 
 LIST_EXEC		= ft_get_cmd.c ft_exec_builtin.c exec.c ft_file_descriptor.c ft_files.c \
-					ft_get_path_cmd.c ft_here_doc.c ft_free.c exec_pipe.c
+					ft_get_path_cmd.c ft_here_doc.c ft_free.c exec_pipe.c loop.c
 
-LIST_BUILTIN	= ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_pwd.c ft_unset.c
+LIST_BUILTIN	= ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_pwd.c ft_unset.c 
 
 LIST_SIGNAL		=
 

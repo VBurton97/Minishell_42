@@ -6,7 +6,7 @@
 /*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/22 10:40:26 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/23 14:27:20 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int main()
 	t_cmd	cmd;
 	
 	// i = 0;
+	loop();
 	shell.nb_pipe = 0;
 	shell.env_lst = NULL;
 	if (ft_get_env(&(shell.env_lst)))

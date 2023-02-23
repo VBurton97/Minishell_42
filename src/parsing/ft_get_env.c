@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:56:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/07 15:39:51 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/23 14:26:50 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	ft_get_env(t_token **env_lst)
 	t_token		*token;
 	int			i;
 
+	*env_lst = NULL;
 	i = 0;
 	while (environ[i])
 	{

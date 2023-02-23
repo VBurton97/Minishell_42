@@ -6,7 +6,7 @@
 /*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 19:15:53 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/17 15:06:41 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/23 15:11:32 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int	ft_export(char **argv, t_shell *shell)
 	int		i;
 	t_token	*var;
 
+	printf("argv[0]: %s", argv[0]);
+	printf("argv[1]: %s", argv[1]);
+	printf("argv[2]: %s", argv[2]);
+
 	if (argv[1] == NULL)
 	{
 		write(2, "no argument\n", 20);
@@ -34,13 +38,20 @@ int	ft_export(char **argv, t_shell *shell)
 	i = 1;
 	while (argv[i])
 	{
-		if (ft_illegal_name(argv[i]))
+		if (ft_illegal_name(argv[i]) == 0)
+		{
+			printf("illega\n");
 			ret = 1;
+		}
 		else if (ft_strchr(argv[i], '='))
 		{
 			var = ft_new_var(argv[i]);
+			printf("hey\n");
 			if (var)
+			{
+				printf("coucou\n");
 				ft_add_token(&(shell->env_lst), var);
+			}
 		}
 		i++;
 	}
@@ -87,6 +98,6 @@ int	ft_illegal_name(char *name)
 		}
 		i++;
 	}
+	
 	return (1);
 }
-

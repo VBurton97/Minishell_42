@@ -3,6 +3,7 @@
 
 # include "minishell.h"
 # include "parsing.h"
+# include "builtin.h"
 
 t_token	*ft_get_lst_cmd(t_token	*lst);
 char	***ft_get_array_cmd(t_token *lst, int nb_cmd);
@@ -20,5 +21,6 @@ void	ft_open_close_dup(t_token *lst, t_shell *shell, int **fd);
 int		first_cmds(t_shell *shell, char **cmd, int **fd);
 void	ft_close_fd(int **fd, t_shell *shell);
 int		**ft_init_fd(int nb_pipe);
+int 	loop(void);
 
 #endif

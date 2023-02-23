@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 13:55:13 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/23 14:15:50 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/23 14:38:22 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 int loop(void)
 {
     t_shell shell;
+    t_token	*lst_cmd;
+	t_cmd	cmd;
     char    *buffer;
 
     if (ft_get_env(&(shell.env_lst)))
@@ -31,15 +33,18 @@ int loop(void)
         if (buffer == NULL)
             break ;
         if (ft_parsing(buffer, &shell))
-	    {
-		    ft_delete_lst(&(shell.env_lst));
 		    write(2, "parsing fails\n", 14);
-	    }
         else
         {
             add_history(buffer);
-            //exec
+            lst_cmd = ft_get_lst_cmd(shell.parsed_input);
+	        shell.nb_pipe = get_number_of_pipe(shell.parsed_input);
+	        shell.env = get_array_env(shell.env_lst);
+	        cmd.command = ft_get_array_cmd(shell.parsed_input, shell.nb_pipe);
+            ft_exec(&shell, lst_cmd, cmd.command);
+            ft_delete_lst(&lst_cmd);
         }
+        ft_delete_lst(&shell.parsed_input);
         *buffer = '\0';
         free(buffer);
     }
