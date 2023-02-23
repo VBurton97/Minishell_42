@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 13:55:13 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/23 14:38:22 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/23 16:53:15 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ int loop(void)
         buffer = readline("minishell-> ");
         if (buffer == NULL)
             break ;
-        if (ft_parsing(buffer, &shell))
+        if (*buffer == '\0')
+            ;
+        else if (ft_parsing(buffer, &shell))
 		    write(2, "parsing fails\n", 14);
         else
         {

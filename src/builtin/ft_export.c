@@ -6,13 +6,13 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 19:15:53 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/23 16:42:23 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/23 17:33:25 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-static t_token	*ft_new_var(char *str);
+static void	ft_add_to_lst(t_token **env_lst, t_token *var);
 
 /*
 	can take multiple args
@@ -34,7 +34,7 @@ int	ft_export(char **argv, t_shell *shell)
 	i = 1;
 	while (argv[i])
 	{
-		if (ft_illegal_name(argv[i]) == 0)
+		if (ft_illegal_name(argv[i]))
 			ret = 1;
 		else if (ft_strchr(argv[i], '='))
 		{
@@ -52,7 +52,7 @@ int	ft_export(char **argv, t_shell *shell)
 	if it exist, remove the old token and put the new one in place
 	otherwise, append it at the end
 */
-void	ft_add_to_lst(t_token **env_lst, t_token *var)
+static void	ft_add_to_lst(t_token **env_lst, t_token *var)
 {
 	int		name_len;
 	t_token	*node;
@@ -61,11 +61,11 @@ void	ft_add_to_lst(t_token **env_lst, t_token *var)
 	
 	name_len = ft_name_len(var->word);
 	node = *env_lst;
-	while (ft_strncmp(node->word, var->word, name_len))
+	while (node && ft_strncmp(node->word, var->word, name_len))
 		node = node->next;
 	if (node == NULL)
 	{
-		return (t_add_token(env_lst, var));
+		return (ft_add_token(env_lst, var));
 	}
 	prev = node->prev;
 	next = node->next;
@@ -78,11 +78,11 @@ void	ft_add_to_lst(t_token **env_lst, t_token *var)
 		prev->next = var;
 		var->prev = prev;
 	}
-	free(node);
+	ft_delete_token(&node);
 }
 
 /*
-	count the length of the part of 'NAME='
+	count the length of the part before '='
 	if there is not = present in the str, it will return the whole length
 */
 int	ft_name_len(char *str)
@@ -107,18 +107,17 @@ int	ft_illegal_name(char *name)
 	if (ft_isdigit(name[0]))
 	{
 		write(2, "not a valid identifier\n", 31);
-		return (0);
+		return (1);
 	}
 	i = 0;
-	while (name[i] != '=')
+	while (name[i] && name[i] != '=')
 	{
 		if (!ft_isalnum(name[i]) && name[i] != '_')
 		{
 			write(2, "not a valid identifier\n", 31);
-			return (0);
+			return (1);
 		}
 		i++;
 	}
-	
-	return (1);
+	return (0);
 }

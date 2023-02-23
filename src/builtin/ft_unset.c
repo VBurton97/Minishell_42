@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 11:10:19 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/17 18:21:35 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/23 17:25:48 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,6 @@ int	ft_unset(char **argv, t_shell *shell)
 		}
 		i++;
 	}
-	shell->env_lst = shell->env_lst->prev;
-	while (shell->env_lst)
-	{
-		ft_printf("%s\n", shell->env_lst->word);
-		shell->env_lst = shell->env_lst->next;
-	}
 	return (ret);
 }
 
@@ -50,18 +44,15 @@ static void	ft_free_var(char *var, t_token **lst)
 	t_token	*node;
 	
 	node = *lst;
-	if (ft_strncmp(node->word, var, ft_strlen(var)) == 0 
-		&&ft_strncmp(node->word, var, ft_strlen(node->word)) == 0)
+	if (ft_strncmp(node->word, var, ft_name_len(node->word)) == 0)
 	{
 		*lst = (*lst)->next;
-		free(node->word);
-		free(node);
+		ft_delete_token(&node);
 		return ;
 	}
 	while (node)
 	{
-		if (ft_strncmp(node->word, var, ft_strlen(var)) == 0 
-			&&ft_strncmp(node->word, var, ft_strlen(node->word)) == 0)
+		if (ft_strncmp(node->word, var, ft_name_len(node->word)) == 0)
 		{
 			ft_rm_node(node);
 			return ;
@@ -77,8 +68,7 @@ static void	ft_rm_node(t_token *token)
 
 	prev = token->prev;
 	next = token->next;
-	free(token->word);
-	free(token);
+	ft_delete_token(&token);
 	if (prev)
 	{
 		prev->next = next;
