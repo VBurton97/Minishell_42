@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vburton <vburton@student.42.fr>            +#+  +:+       +#+         #
+#    By: victor <victor@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/02/23 15:22:29 by vburton          ###   ########.fr        #
+#    Updated: 2023/02/24 14:57:23 by victor           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ LIB		=	libftprintf/libftprintf.a
 
 CC		=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror -g 
+CFLAGS	=	-Wall -Wextra -Werror -g
 
 all: $(NAME)
 

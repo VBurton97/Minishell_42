@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 13:55:13 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/23 16:53:15 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/24 16:04:48 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int loop(void)
 {
     t_shell shell;
     t_token	*lst_cmd;
-	t_cmd	cmd;
+	// t_cmd	*cmd;
     char    *buffer;
 
     if (ft_get_env(&(shell.env_lst)))
@@ -42,8 +42,20 @@ int loop(void)
             lst_cmd = ft_get_lst_cmd(shell.parsed_input);
 	        shell.nb_pipe = get_number_of_pipe(shell.parsed_input);
 	        shell.env = get_array_env(shell.env_lst);
-	        cmd.command = ft_get_array_cmd(shell.parsed_input, shell.nb_pipe);
-            ft_exec(&shell, lst_cmd, cmd.command);
+	        shell.cmd = ft_get_array_cmd(shell.parsed_input, shell.nb_pipe);
+			// cmd = shell.cmd;
+            // int	g = 0;
+            // while (cmd->command)
+            // {
+            //     int	h = 0;
+            //     while (cmd->command[h])
+            //     {
+            //         ft_printf("g = %d et cmd = %s\n", g, cmd->command[h]);
+            //         h++;
+            //     }
+            //     cmd++;
+            // }
+            ft_exec(&shell);
             ft_delete_lst(&lst_cmd);
         }
         ft_delete_lst(&shell.parsed_input);

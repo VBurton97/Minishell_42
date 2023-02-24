@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:37:01 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/23 15:20:56 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/24 16:36:35 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,8 @@ typedef struct s_shell{
 
 typedef struct s_cmd{
 	//args
-	char	***command;
-	int	write_fd;
-	int	read_fd;
+	char	**command;
+	int		fd[2];
 }	t_cmd;
 
 /***  token_utils.c  ***/
