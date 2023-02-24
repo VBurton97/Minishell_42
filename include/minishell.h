@@ -6,7 +6,7 @@
 /*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:37:01 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/24 16:36:35 by victor           ###   ########.fr       */
+/*   Updated: 2023/02/24 16:49:37 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ typedef struct s_shell{
 typedef struct s_cmd{
 	//args
 	char	**command;
-	int		fd[2];
+	int		write_fd;
+	int		read_fd;
 }	t_cmd;
 
 /***  token_utils.c  ***/

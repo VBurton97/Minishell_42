@@ -6,17 +6,17 @@ void	ft_open_close_dup(t_cmd *cmd, t_token *lst)
 {
 	while (cmd->command)
 	{
-		cmd->fd[0] = 0;
-		cmd->fd[1] = 1;
+		cmd->read_fd = 0;
+		cmd->write_fd = 1;
 		if (ft_strcmp(lst->word, "<") == 0 || ft_strcmp(lst->word, "<<") == 0)
 		{
-			cmd->fd[0] = ft_read_file(lst, lst->word);
+			cmd->read_fd = ft_read_file(lst, lst->word);
 			// dup2(cmd->read_fd, STDIN_FILENO);
 			// close(cmd->read_fd);
 		}
 		if (ft_strcmp(lst->word, ">") == 0 || ft_strcmp(lst->word, ">>") == 0)
 		{
-			cmd->fd[1] = ft_write_file(lst, lst->word);
+			cmd->write_fd = ft_write_file(lst, lst->word);
 			// dup2(cmd->write_fd, STDOUT_FILENO);
 			// close(cmd->write_fd);
 		}
