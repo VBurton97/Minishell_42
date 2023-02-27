@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:19:25 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/27 16:20:57 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/27 16:39:55 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,9 @@ void	ft_delete_redirect_lst(t_token **lst)
 	node = *lst;
 	while (node && node->next)
 	{
-		if ((!ft_strcmp(node->word, "<") || !ft_strcmp(node->word, "<<"))
+		if ((!ft_strcmp(node->word, "<") || !ft_strcmp(node->word, "<<") || 
+			(!ft_strcmp(node->word, ">") || !ft_strcmp(node->word, ">>")))
 			&& node->is_op)
-		{
-			node = ft_delete_redirect_node(node);
-		}
-		else if ((!ft_strcmp(node->word, ">") || !ft_strcmp(node->word, ">>"))
-					&& node->is_op)
 		{
 			node = ft_delete_redirect_node(node);
 		}
@@ -74,7 +70,7 @@ void	ft_delete_redirect_lst(t_token **lst)
 			node = node->next;
 		}
 	}
-	while (node->prev)
+	while (node && node->prev)
 	{
 		node = node->prev;
 	}
