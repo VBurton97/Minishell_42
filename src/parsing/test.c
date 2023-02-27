@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/27 14:55:40 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/27 16:24:20 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int main()
 			ft_print_cmd(shell.cmd, shell.cmd_size);
         }
         ft_free_cmd(shell.cmd, shell.cmd_size);
+		shell.cmd = NULL;
         *buffer = '\0';
         free(buffer);
     }

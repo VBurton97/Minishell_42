@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:19:25 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/27 14:18:45 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/27 16:20:57 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,10 @@ t_token	*ft_delete_redirect_node(t_token *node1)
 	if (next)
 	{
 		next->prev = prev;
+	}
+	if (next == NULL)
+	{
+		return (prev);
 	}
 	return (next);
 }
