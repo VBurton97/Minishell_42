@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:37:01 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/23 15:20:56 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/27 12:16:29 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,15 @@ typedef struct s_shell{
 	int		output;
 	t_token	*env_lst;
 	int		exit_status;
+	
 	t_cmd	*cmd;
+	int		cmd_size;
 	t_token	*parsed_input;
 }	t_shell;
 
 typedef struct s_cmd{
 	//args
-	char	***command;
+	char	**command;
 	int	write_fd;
 	int	read_fd;
 }	t_cmd;

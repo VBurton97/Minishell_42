@@ -6,11 +6,13 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:41:29 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/27 13:06:40 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/27 13:52:34 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+static void	ft_free_cmd(t_cmd *cmd, int size);
 
 /*
     return 0
@@ -34,8 +36,37 @@ int	ft_parsing(char *buffer, t_shell *shell)
 	}
 	cmd = t_get_cmd(lst, &(shell->cmd_size));
 	ft_redirect(&lst, cmd, shell->cmd_size);
-	//init command
+	if (ft_init_command(lst, cmd, shell->cmd_size))
+	{
+		ft_free_cmd(cmd, shell->cmd_size);
+		ft_delete_lst(&lst);
+		return (1);
+	}
 	ft_delete_lst(&lst);
 	shell->cmd = cmd;
 	return (0);
+}
+
+static void	ft_free_cmd(t_cmd *cmd, int size)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < size)
+	{
+		if (cmd[i].command == NULL)
+			;
+		else
+		{
+			j = 0;
+			while (cmd[i].command[j])
+			{
+				free(cmd[i].command[j]);
+				j++;
+			}
+			free(cmd[i].command);
+		}
+		i++;
+	}
 }

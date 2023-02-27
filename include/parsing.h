@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/16 13:58:24 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/27 13:46:04 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,12 @@ int		ft_syntax_err(t_token *lst);
 t_token	*ft_get_token(char **buffer);
 t_token	*ft_is_token(char **buffer, int length);
 
-/***  ft_set_pipe.c  
-t_cmd	*ft_get_cmd(t_token *lst);
+/***  ft_set_pipe.c  ***/
+t_cmd	*ft_get_cmd(t_token *lst, int *size);
 void	ft_set_pipe(t_cmd *cmd, int n, int *p);
 int		*ft_malloc_pipe(int n);
 t_cmd	*ft_malloc_cmd(int n);
 int		ft_count_pipe(t_token *lst);
-***/
 
 /***  parsing.c  ***/
 int		ft_parsing(char *buffer, t_shell *shell);
@@ -79,5 +78,18 @@ int 	ft_split_word(t_token **node);
 /***	ft_rm_quote.c	***/
 void	ft_rm_quote_lst(t_token *lst);
 void	ft_rm_quote_word(char *word);
+
+/***	ft_redirect.c	***/
+void	ft_redirect(t_token **lst, t_cmd *cmd, int size);
+t_token	*ft_redirect_one(t_token *node, t_cmd cmd);
+void	ft_delete_redirect_lst(t_token **lst);
+t_token	*ft_delete_redirect_node(t_token *node1);
+
+/***	ft_init_command.c 	***/
+int 	ft_init_command(t_token *lst, t_cmd *cmd, int size);
+int		ft_init_one(t_token *node, t_cmd cmd);
+int 	ft_count_args(t_token *node);
+t_token *ft_next_cmd(t_token *node);
+
 
 #endif

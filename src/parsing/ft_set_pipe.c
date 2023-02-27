@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:43:58 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/27 12:18:44 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/27 13:36:33 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ t_cmd	*ft_malloc_cmd(int n)
 	i = 0;
 	while (i < n)
 	{
+		cmd.command = NULL;
 		cmd[i].read_fd = 0;
 		cmd[i].write_fd = 1;
 		i++;
