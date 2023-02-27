@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:41:29 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/27 14:45:18 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/27 16:59:46 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,25 @@ int	ft_parsing(char *buffer, t_shell *shell)
 	lst = ft_line_to_token(buffer);
 	if (!lst || ft_syntax_err(lst))
 	{
-		ft_delete_lst(&lst);
-		return (1);
+		return (ft_delete_lst(&lst), 1);
 	}
 	if (ft_exps_and_split(&lst, shell->env_lst))
 	{
-		ft_delete_lst(&lst);
-		return (1);
+		return (ft_delete_lst(&lst), 1);
 	}
 	cmd = ft_get_cmd(lst, &(shell->cmd_size));
+	if (cmd == NULL)
+	{
+		return (ft_delete_lst(&lst), 1);
+	}
 	ft_redirect(&lst, cmd, shell->cmd_size);
 	if (ft_init_command(lst, cmd, shell->cmd_size))
 	{
 		ft_free_cmd(cmd, shell->cmd_size);
-		ft_delete_lst(&lst);
-		return (1);
+		return (ft_delete_lst(&lst), 1);
 	}
-	ft_delete_lst(&lst);
 	shell->cmd = cmd;
-	return (0);
+	return (ft_delete_lst(&lst), 0);
 }
 
 void	ft_free_cmd(t_cmd *cmd, int size)
@@ -50,6 +50,8 @@ void	ft_free_cmd(t_cmd *cmd, int size)
 	int	i;
 	int	j;
 
+	if (cmd == NULL)
+		return ;
 	i = 0;
 	while (i < size)
 	{
@@ -67,4 +69,5 @@ void	ft_free_cmd(t_cmd *cmd, int size)
 		}
 		i++;
 	}
+	free(cmd);
 }
