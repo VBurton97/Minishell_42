@@ -2,7 +2,7 @@
 #include "minishell.h"
 #include "parsing.h"
 
-void	fils_here_doc(char *limiter, int	*fd);
+void	fils_here_doc(char *limiter, int *fd);
 
 int	ft_here_doc(char *limiter)
 {
@@ -31,7 +31,6 @@ void	fils_here_doc(char *limiter, int	*fd)
 	char	*next_line;
 
 	close (fd[0]);
-	ft_printf("limiter = %s\n", limiter);
 	write(1, "pipe heredoc>", 13);
 	while (1)
 	{

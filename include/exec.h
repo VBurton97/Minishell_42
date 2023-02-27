@@ -13,14 +13,12 @@ void	ft_exec(t_shell *shell);
 int		ft_open_file(char *file, char *op);
 int		ft_here_doc(char *limiter);
 int		exec_builtin(t_shell *shell, char **cmd);
-int	    ft_read_file(t_token *lst, char *op);
+int		ft_read_file(char *file);
 int	    ft_write_file(t_token *lst, char *op);
 char	*ft_final_path(char **cmd, char **envp);
 void	ft_free_split(char **array);
-void	ft_open_close_dup(t_cmd *cmd, t_token *lst);
+void	ft_open_close_dup(t_cmd *cmd);
 int	    first_cmds(t_cmd *cmd, char **env);
-void	ft_close_fd(int **fd, t_shell *shell);
-int		**ft_init_fd(int nb_pipe);
 int 	loop(void);
 
 #endif
