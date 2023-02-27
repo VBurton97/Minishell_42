@@ -6,7 +6,7 @@
 /*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/27 14:41:42 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/27 14:48:42 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@ void	ft_set_pipe(t_cmd *cmd, int n, int *p);
 int		*ft_malloc_pipe(int n);
 t_cmd	*ft_malloc_cmd(int n);
 int		ft_count_pipe(t_token *lst);
-***/
+
 
 /***  parsing.c  ***/
 int		ft_parsing(char *buffer, t_shell *shell);
+void	ft_free_cmd(t_cmd *cmd, int size);
 
 /***  dollar_exp_utils.c  ***/
 char	*ft_strjoin_1(char *new_w, char **old, int n);
@@ -92,5 +93,12 @@ int		ft_init_one(t_token *node, t_cmd *cmd);
 int 	ft_count_args(t_token *node);
 t_token *ft_next_cmd(t_token *node);
 
+/*	ft_files.c	*/
+int	ft_read_file(t_token *lst, char *op);
+int	ft_write_file(t_token *lst, char *op);
+
+/*	ft_here_doc.c	*/
+int	ft_here_doc(char *limiter);
+void	fils_here_doc(char *limiter, int *fd);
 
 #endif

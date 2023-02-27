@@ -6,7 +6,7 @@
 /*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/27 14:40:37 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/27 14:55:40 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	ft_print_cmd(t_cmd *cmd, int size)
 		}
 		i++;
 	}
+	printf("\n");
 }
 
 
@@ -68,7 +69,7 @@ int main()
             add_history(buffer);
 			ft_print_cmd(shell.cmd, shell.cmd_size);
         }
-        //delete cmd
+        ft_free_cmd(shell.cmd, shell.cmd_size);
         *buffer = '\0';
         free(buffer);
     }

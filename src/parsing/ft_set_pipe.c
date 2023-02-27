@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_set_pipe.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:43:58 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/27 14:21:10 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/27 14:54:46 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_cmd	*ft_get_cmd(t_token *lst, int *size)
 	int		n;
 
 	n = ft_count_pipe(lst);
-	*size = n;
+	*size = n + 1;
 	cmd = ft_malloc_cmd(n + 2);
 	if (n == 0)
 	{

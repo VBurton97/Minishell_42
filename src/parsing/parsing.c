@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:41:29 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/27 14:20:13 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/27 14:45:18 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-static void	ft_free_cmd(t_cmd *cmd, int size);
 
 /*
     return 0
@@ -47,7 +45,7 @@ int	ft_parsing(char *buffer, t_shell *shell)
 	return (0);
 }
 
-static void	ft_free_cmd(t_cmd *cmd, int size)
+void	ft_free_cmd(t_cmd *cmd, int size)
 {
 	int	i;
 	int	j;

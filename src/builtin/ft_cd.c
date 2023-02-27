@@ -6,7 +6,7 @@
 /*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:18:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/20 18:08:20 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/27 14:49:06 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static int	ft_cd_home(t_shell *shell);
 static int	ft_update_pwd(t_shell *shell, char *dir);
-static int	ft_count_args(char **argv);
+static int	ft_count_args_cd(char **argv);
 
 int	ft_cd(char **argv, t_shell *shell)
 {
-	if (ft_count_args(argv) >= 3)
+	if (ft_count_args_cd(argv) >= 3)
 	{
 		write(2, "cd: too many arguments\n", 23);
 		return (1);
@@ -41,7 +41,7 @@ int	ft_cd(char **argv, t_shell *shell)
 	return (0);
 }
 
-static int	ft_count_args(char **argv)
+static int	ft_count_args_cd(char **argv)
 {
 	int	i;
 
