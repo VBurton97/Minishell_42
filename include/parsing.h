@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/27 13:46:04 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/27 14:17:51 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ void	ft_rm_quote_word(char *word);
 
 /***	ft_redirect.c	***/
 void	ft_redirect(t_token **lst, t_cmd *cmd, int size);
-t_token	*ft_redirect_one(t_token *node, t_cmd cmd);
+t_token	*ft_redirect_one(t_token *node, t_cmd *cmd);
 void	ft_delete_redirect_lst(t_token **lst);
 t_token	*ft_delete_redirect_node(t_token *node1);
 
 /***	ft_init_command.c 	***/
 int 	ft_init_command(t_token *lst, t_cmd *cmd, int size);
-int		ft_init_one(t_token *node, t_cmd cmd);
+int		ft_init_one(t_token *node, t_cmd *cmd);
 int 	ft_count_args(t_token *node);
 t_token *ft_next_cmd(t_token *node);
 

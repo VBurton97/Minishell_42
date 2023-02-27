@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 13:10:25 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/27 13:45:52 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/27 14:18:19 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int ft_init_command(t_token *lst, t_cmd *cmd, int size)
 	i = 0;
 	while (i < size)
 	{
-		if (ft_init_one(node, cmd[i]))
+		if (ft_init_one(node, cmd + i))
 		{
 			write(2, "malloc fails\n", 13);
 			return (1);
@@ -42,7 +42,7 @@ int ft_init_command(t_token *lst, t_cmd *cmd, int size)
 /*
 	node is the begin of a cmd
 */
-int	ft_init_one(t_token *node, t_cmd cmd)
+int	ft_init_one(t_token *node, t_cmd *cmd)
 {
 	int		i;
 	int		count;
@@ -66,7 +66,7 @@ int	ft_init_one(t_token *node, t_cmd cmd)
 		i++;
 	}
 	args[i] = NULL;
-	cmd.command = args;
+	cmd->command = args;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:19:25 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/27 13:05:21 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/27 14:18:45 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_redirect(t_token **lst, t_cmd *cmd, int size)
 	i = 0;
 	while (i < size)
 	{
-		node = ft_redirect_one(node, cmd[i]);
+		node = ft_redirect_one(node, cmd + i);
 		if (node)
 			node = node->next;
 		i++;
@@ -32,7 +32,7 @@ void	ft_redirect(t_token **lst, t_cmd *cmd, int size)
 	ft_delete_redirect_lst(lst);
 }
 
-t_token	*ft_redirect_one(t_token *node, t_cmd cmd)
+t_token	*ft_redirect_one(t_token *node, t_cmd *cmd)
 {
 	while (1)
 	{
@@ -41,12 +41,12 @@ t_token	*ft_redirect_one(t_token *node, t_cmd cmd)
 		if ((!ft_strcmp(node->word, "<") || !ft_strcmp(node->word, "<<"))
 			&& node->is_op)
 		{
-			cmd.read_fd = ft_read_file(node, node->word);
+			cmd->read_fd = ft_read_file(node, node->word);
 		}
 		else if ((!ft_strcmp(node->word, ">") || !ft_strcmp(node->word, ">>"))
 					&& node->is_op)
 		{
-			cmd.write_fd = ft_write_file(node, node->word);
+			cmd->write_fd = ft_write_file(node, node->word);
 		}
 		node = node->next;
 	}
