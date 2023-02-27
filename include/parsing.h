@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: victor <victor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/16 13:58:24 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/24 17:01:07 by victor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,12 @@ int		ft_syntax_err(t_token *lst);
 t_token	*ft_get_token(char **buffer);
 t_token	*ft_is_token(char **buffer, int length);
 
-/***  ft_set_pipe.c  
+/***  ft_set_pipe.c  ***/
 t_cmd	*ft_get_cmd(t_token *lst);
 void	ft_set_pipe(t_cmd *cmd, int n, int *p);
 int		*ft_malloc_pipe(int n);
 t_cmd	*ft_malloc_cmd(int n);
 int		ft_count_pipe(t_token *lst);
-***/
 
 /***  parsing.c  ***/
 int		ft_parsing(char *buffer, t_shell *shell);

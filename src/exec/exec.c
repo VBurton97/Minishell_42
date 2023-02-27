@@ -7,10 +7,13 @@ void	no_pipe(t_shell *shell);
 
 void	ft_exec(t_shell *shell)
 {
+	int		*fd;
 	t_cmd	*cmd;
 	
+	fd = ft_malloc_pipe(shell->nb_pipe);
 	cmd = shell->cmd;
 	ft_open_close_dup(cmd, shell->parsed_input);
+	ft_set_pipe(cmd, shell->nb_pipe, fd);
 	while (shell->parsed_input)
 	{
 		if (ft_strcmp(shell->parsed_input->word, "|") != 0)

@@ -10,23 +10,22 @@ int	first_cmds(t_cmd *cmd, char **env)
 	char	*path_cmd;
 	int		pid;
 
-	pipe(cmd->fd);
 	path_cmd = ft_final_path(cmd->command, env);
 	pid = fork();
 	if (pid == -1)
 		perror(": fork failed\n");
 	if (pid == 0)
 	{
-		close(cmd->fd[0]);
-		dup2(cmd->fd[1], STDOUT_FILENO);
+		close(cmd->read_fd);
+		dup2(cmd->write_fd, STDOUT_FILENO);
 		ft_printf("coucou\n");
-		close(cmd->fd[1]);
+		close(cmd->write_fd);
 		execve(path_cmd, cmd->command, env);
 	}
-	close (cmd->fd[1]);
+	close (cmd->write_fd);
+	dup2(cmd->read_fd, STDIN_FILENO);
+	close (cmd->read_fd);
 	cmd++;
-	dup2(cmd->fd[0], STDIN_FILENO);
-	close (cmd->fd[0]);
 	return (0);
 }
 
