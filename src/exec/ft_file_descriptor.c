@@ -6,8 +6,6 @@ void	ft_open_close_dup(t_cmd *cmd, t_token *lst)
 {
 	while (cmd->command)
 	{
-		cmd->read_fd = 0;
-		cmd->write_fd = 1;
 		if (ft_strcmp(lst->word, "<") == 0 || ft_strcmp(lst->word, "<<") == 0)
 		{
 			cmd->read_fd = ft_read_file(lst, lst->word);

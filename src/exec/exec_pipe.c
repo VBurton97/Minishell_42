@@ -18,7 +18,6 @@ int	first_cmds(t_cmd *cmd, char **env)
 	{
 		close(cmd->read_fd);
 		dup2(cmd->write_fd, STDOUT_FILENO);
-		ft_printf("coucou\n");
 		close(cmd->write_fd);
 		execve(path_cmd, cmd->command, env);
 	}

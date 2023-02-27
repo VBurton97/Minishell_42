@@ -56,7 +56,7 @@ t_cmd	*ft_get_array_cmd(t_token *lst, int nb_cmd)
 	t_token	*buffer;
 
 	buffer = lst;
-	cmd = malloc(sizeof(t_cmd) * (nb_cmd + 2));
+	cmd = malloc(sizeof(t_cmd) * (nb_cmd + 1));
 	buffer_cmd = cmd;
 	while (lst)
 	{
