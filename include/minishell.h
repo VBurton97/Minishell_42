@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:37:01 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/27 17:03:02 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/27 18:30:10 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_token{
 
 typedef struct s_shell{
 	int		i;
-	int		*pid;
 	int		nb_pipe;
 	char	*path_cmd;
 	char	**env;
@@ -67,6 +66,8 @@ typedef struct s_cmd{
 	char	*append_file;
 	int		write_fd;
 	int		read_fd;
+	int		child_pid; // init to 0
+	int		exit_status; //init to 0
 }	t_cmd;
 
 /***  token_utils.c  ***/

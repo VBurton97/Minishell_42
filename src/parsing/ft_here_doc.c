@@ -13,7 +13,7 @@ int	ft_here_doc(char *limiter)
 		return (1);
 	pid = fork();
 	if (pid == -1)
-		perror("An error as occured while attempting to fork");
+		perror("An error has occured while attempting to fork");
 	if (pid == 0)
 		fils_here_doc(limiter, fd);
 	else
