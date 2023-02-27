@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 19:15:53 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/23 15:11:32 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/23 17:42:50 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-static t_token	*ft_new_var(char *str);
+static void	ft_add_to_lst(t_token **env_lst, t_token *var);
 
 /*
 	can take multiple args
@@ -25,10 +25,6 @@ int	ft_export(char **argv, t_shell *shell)
 	int		i;
 	t_token	*var;
 
-	printf("argv[0]: %s", argv[0]);
-	printf("argv[1]: %s", argv[1]);
-	printf("argv[2]: %s", argv[2]);
-
 	if (argv[1] == NULL)
 	{
 		write(2, "no argument\n", 20);
@@ -38,20 +34,13 @@ int	ft_export(char **argv, t_shell *shell)
 	i = 1;
 	while (argv[i])
 	{
-		if (ft_illegal_name(argv[i]) == 0)
-		{
-			printf("illega\n");
+		if (ft_illegal_name(argv[i]))
 			ret = 1;
-		}
 		else if (ft_strchr(argv[i], '='))
 		{
-			var = ft_new_var(argv[i]);
-			printf("hey\n");
+			var = ft_new_token(argv[i], ft_strlen(argv[i]));
 			if (var)
-			{
-				printf("coucou\n");
-				ft_add_token(&(shell->env_lst), var);
-			}
+				ft_add_to_lst(&(shell->env_lst), var);
 		}
 		i++;
 	}
@@ -59,19 +48,52 @@ int	ft_export(char **argv, t_shell *shell)
 }
 
 /*
-	str has the form NAME=VALUE, value can be an empty string
-	return NULL, if the str is not valid, or the malloc fails
+	search if the env var already exist,
+	if it exist, remove the old token and put the new one in place
+	otherwise, append it at the end
 */
-static t_token	*ft_new_var(char *str)
+static void	ft_add_to_lst(t_token **env_lst, t_token *var)
 {
-	t_token	*token;
-
-	token = ft_new_token(str, ft_strlen(str));
-	if (token == NULL)
+	int		name_len;
+	t_token	*node;
+	t_token	*prev;
+	t_token	*next;
+	
+	name_len = ft_name_len(var->word);
+	node = *env_lst;
+	while (node && ft_strncmp(node->word, var->word, name_len))
+		node = node->next;
+	if (node == NULL)
 	{
-		return (NULL);
+		return (ft_add_token(env_lst, var));
 	}
-	return (token);
+	prev = node->prev;
+	next = node->next;
+	var->next = next;
+	if (next)
+		next->prev = var;
+	if (node == *env_lst)
+		*env_lst = var;
+	else
+	{
+		prev->next = var;
+		var->prev = prev;
+	}
+	ft_delete_token(&node);
+}
+
+/*
+	count the length of the part before '='
+	if there is not = present in the str, it will return the whole length
+*/
+int	ft_name_len(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != '=')
+		i++;
+	return (i);
 }
 
 /*
@@ -86,18 +108,17 @@ int	ft_illegal_name(char *name)
 	if (ft_isdigit(name[0]))
 	{
 		write(2, "not a valid identifier\n", 31);
-		return (0);
+		return (1);
 	}
 	i = 0;
-	while (name[i] != '=')
+	while (name[i] && name[i] != '=')
 	{
 		if (!ft_isalnum(name[i]) && name[i] != '_')
 		{
 			write(2, "not a valid identifier\n", 31);
-			return (0);
+			return (1);
 		}
 		i++;
 	}
-	
-	return (1);
+	return (0);
 }

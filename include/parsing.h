@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/27 14:17:51 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/27 14:41:42 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_set_pipe(t_cmd *cmd, int n, int *p);
 int		*ft_malloc_pipe(int n);
 t_cmd	*ft_malloc_cmd(int n);
 int		ft_count_pipe(t_token *lst);
+***/
 
 /***  parsing.c  ***/
 int		ft_parsing(char *buffer, t_shell *shell);

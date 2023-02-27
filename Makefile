@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vburton <vburton@student.42.fr>            +#+  +:+       +#+         #
+#    By: victor <victor@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/02/23 15:22:29 by vburton          ###   ########.fr        #
+#    Updated: 2023/02/24 17:02:57 by victor           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ LIST_PARSING	=	line_to_token_utils.c ft_line_to_token.c  \
 					dollar_exp_utils.c ft_dollar_exps.c \
 					ft_get_homedir.c tilde_exps_utils.c ft_tilde_exps.c \
 					ft_exps_and_split.c ft_field_split.c ft_rm_quote.c \
-					parsing.c \
+					parsing.c ft_set_pipe.c \
 					test.c
 
 LIST_EXEC		= ft_get_cmd.c ft_exec_builtin.c exec.c ft_file_descriptor.c ft_files.c \
@@ -70,7 +70,7 @@ LIB		=	libftprintf/libftprintf.a
 
 CC		=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror -g 
+CFLAGS	=	-Wall -Wextra -Werror -g
 
 all: $(NAME)
 

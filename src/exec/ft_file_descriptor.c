@@ -2,19 +2,23 @@
 #include "minishell.h"
 #include "parsing.h"
 
-void	ft_open_close_dup(t_token *lst, t_shell *shell, int **fd)
+void	ft_open_close_dup(t_cmd *cmd, t_token *lst)
 {
-	if (ft_strcmp(lst->word, "<") == 0 || ft_strcmp(lst->word, "<<") == 0)
+	while (cmd->command)
 	{
-		fd[shell->i][0] = ft_read_file(lst, lst->word);
-		dup2(fd[shell->i][0], STDIN_FILENO);
-		close(fd[shell->i][0]);
-	}
-	if (ft_strcmp(lst->word, ">") == 0 || ft_strcmp(lst->word, ">>") == 0)
-	{
-		fd[shell->i][1] = ft_write_file(lst, lst->word);
-		dup2(fd[shell->i][1], STDOUT_FILENO);
-		close(fd[shell->i][1]);
+		if (ft_strcmp(lst->word, "<") == 0 || ft_strcmp(lst->word, "<<") == 0)
+		{
+			cmd->read_fd = ft_read_file(lst, lst->word);
+			// dup2(cmd->read_fd, STDIN_FILENO);
+			// close(cmd->read_fd);
+		}
+		if (ft_strcmp(lst->word, ">") == 0 || ft_strcmp(lst->word, ">>") == 0)
+		{
+			cmd->write_fd = ft_write_file(lst, lst->word);
+			// dup2(cmd->write_fd, STDOUT_FILENO);
+			// close(cmd->write_fd);
+		}
+		cmd++;
 	}
 }
 

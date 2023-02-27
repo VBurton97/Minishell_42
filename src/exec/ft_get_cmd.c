@@ -47,17 +47,17 @@ t_token	*ft_get_lst_cmd(t_token	*lst)
 	return (buffer);
 }
 
-char	***ft_get_array_cmd(t_token *lst, int nb_cmd)
+t_cmd	*ft_get_array_cmd(t_token *lst, int nb_cmd)
 {
-	int		i;
 	int		j;
 	int		nb_arg;
-	char	***cmd;
+	t_cmd	*cmd;
+	t_cmd	*buffer_cmd;
 	t_token	*buffer;
 
-	i = 0;
 	buffer = lst;
-	cmd = malloc(sizeof(char **) * (nb_cmd + 2));
+	cmd = malloc(sizeof(t_cmd) * (nb_cmd + 1));
+	buffer_cmd = cmd;
 	while (lst)
 	{
 		j = 0;
@@ -74,7 +74,7 @@ char	***ft_get_array_cmd(t_token *lst, int nb_cmd)
 		}
 		if (buffer)
 			buffer = buffer->next;
-		cmd[i] = malloc(sizeof(char *) * (nb_arg + 1));
+		cmd->command = malloc(sizeof(char *) * (nb_arg + 1));
 		while (lst)
 		{
 			if (ft_strcmp(lst->word, "|") == 0)
@@ -83,60 +83,19 @@ char	***ft_get_array_cmd(t_token *lst, int nb_cmd)
 				lst = lst->next;
 			else
 			{
-				cmd[i][j] = ft_strdup(lst->word);
+				cmd->command[j] = ft_strdup(lst->word);
 				j++;
 			}
 			lst = lst->next;
 		}
 		if (lst)
 			lst = lst->next;
-		cmd[i][j] = NULL;
-		i++;
+		cmd->command[j] = NULL;
+		cmd++;
 	}
-	cmd[i] = NULL;
-	return (cmd);
+	cmd->command = NULL;
+	return (buffer_cmd);
 }
-
-// char	***ft_get_array_cmd(t_token *lst, int nb_cmd)
-// {	
-// 	int i;
-// 	int	j;
-// 	int	nb_arg;
-// 	char	***cmd;
-// 	t_token	*buffer;
-
-// 	i = 0;
-// 	buffer = lst;
-// 	ft_print_lst(lst);
-// 	cmd = malloc(sizeof(char **) * (nb_cmd + 2));
-// 	while (i <= nb_cmd)
-// 	{
-// 		j = 0;
-// 		nb_arg = 0;
-// 		while (buffer && ft_strncmp(buffer->word, "|", 1) != 0)
-// 		{
-// 			nb_arg++;
-// 			buffer = buffer->next;
-// 		}
-// 		if (buffer && ft_strncmp(buffer->word, "|", 1) == 0)
-// 			buffer = buffer->next;
-// 		cmd[i] = malloc(sizeof(char *) * (nb_arg + 1));
-// 		while (lst && ft_strcmp(lst->word, "|") != 0 && lst->is_op == 0)
-// 		{
-// 		ft_printf("cmd in creation = %s\n", lst->word);
-// 			ft_printf("i = %d\n", i);
-// 			cmd[i][j] = ft_strdup(lst->word);
-// 			lst = lst->next;
-// 			j++;
-// 		}
-// 		if (lst && ft_strncmp(lst->word, "|", 1) == 0)
-// 			lst = lst->next;
-// 		cmd[i][j] = NULL;
-// 		i++;
-// 	}
-// 	cmd[i] = NULL;
-// 	return (cmd);
-// }
 
 int	get_number_of_pipe(t_token	*lst)
 {
