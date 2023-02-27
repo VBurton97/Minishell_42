@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_set_pipe.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasha <sasha@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:43:58 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/07 15:22:50 by sasha            ###   ########.fr       */
+/*   Updated: 2023/02/27 12:18:44 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,28 @@
 	malloc cmd according to how many pipe counted in the lst
 	with write_fd and read_fd all init and connected by pipe
 */
-t_cmd	*ft_get_cmd(t_token *lst)
+t_cmd	*ft_get_cmd(t_token *lst, int *size)
 {
 	int		*p;
 	t_cmd	*cmd;
 	int		n;
 
 	n = ft_count_pipe(lst);
-	cmd = ft_malloc_cmd(n + 1);
+	cmd = ft_malloc_cmd(n + 2);
 	if (n == 0)
 	{
 		return (cmd);
 	}
-	p = ft_malloc_pipe(n);
-	if (p == NULL || cmd == NULL)
+	if (n > 0)
 	{
-		return (free(cmd), free(p), NULL);
+		p = ft_malloc_pipe(n);
+		if (p == NULL || cmd == NULL)
+		{
+			return (free(cmd), free(p), NULL);
+		}
+		ft_set_pipe(cmd, n + 1, p);
+		free(p);
 	}
-	ft_set_pipe(cmd, n + 1, p);
-	free(p);
 	return (cmd);
 }
 
@@ -128,7 +131,7 @@ int	ft_count_pipe(t_token *lst)
 	i = 0;
 	while (lst)
 	{
-		if (ft_strncmp(lst->word, "|", 1) == 0)
+		if (ft_strncmp(lst->word, "|", 1) == 0 && lst->is_op)
 			i++;
 		lst = lst->next;
 	}
