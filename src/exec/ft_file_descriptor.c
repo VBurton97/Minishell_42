@@ -20,7 +20,7 @@ int	ft_read_file(char *file)
 {
 	int	input;
 
-	input = 0;
+	input = -1;
 	if (access(file, R_OK) != 0)
 		perror(file);
 	else
@@ -32,7 +32,7 @@ int	ft_write_in_file(char *file)
 {
 	int	output;
 
-	output = 1;
+	output = -1;
 	if (access(file, F_OK) == 0 && access(file, W_OK) == -1)
 		perror(file);
 	else
@@ -44,7 +44,7 @@ int	ft_append_file(char *file)
 {
 	int	output;
 
-	output = 1;
+	output = -1;
 	if (access(file, F_OK) == 0 && access(file, W_OK) == -1)
 		perror(file);
 	else

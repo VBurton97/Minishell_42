@@ -10,7 +10,8 @@ int	first_cmds(t_cmd *cmd, char **env)
 	char	*path_cmd;
 	int		pid;
 
-	path_cmd = ft_final_path(cmd->command, env);
+	if (cmd->args == 1 && cmd)
+	path_cmd = ft_final_path(cmd->args[0], env);
 	pid = fork();
 	if (pid == -1)
 		perror(": fork failed\n");

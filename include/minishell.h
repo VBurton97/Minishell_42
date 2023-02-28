@@ -6,7 +6,7 @@
 /*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:37:01 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/27 19:50:13 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/28 18:43:05 by vburton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,13 @@ typedef struct s_shell{
 }	t_shell;
 
 typedef struct s_cmd{
-	char	**command;
+	char	**args;
 	char	*read_file;
 	char	*write_file;
 	char	*append_file;
 	int		write_fd;
 	int		read_fd;
+	char	*path_cmd;
 }	t_cmd;
 
 /***  token_utils.c  ***/

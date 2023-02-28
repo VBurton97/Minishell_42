@@ -8,24 +8,22 @@ void	no_pipe(t_shell *shell);
 void	ft_exec(t_shell *shell)
 {
 	int		*fd;
+	int		i;
 	t_cmd	*cmd;
 	
 	// fd = ft_malloc_pipe(shell->nb_pipe);
+	/*Ecire une fonction qui met a jour ls tableau des commandes avec les paths des fontion a fournir a execve
+	+ verifier si builtin ou pas*/
 	cmd = shell->cmd;
 	// ft_set_pipe(cmd, shell->nb_pipe, fd);
-	while (shell->parsed_input)
+	i = 0;
+	if (cmd->size == 1 && exec_builtin(shell, cmd->args) != -1)
+		return ;
+	while (i < cmd->size)
 	{
-		ft_open_close_dup(cmd, shell->parsed_input);
-		if (ft_strcmp(shell->parsed_input->word, "|") != 0)
-			first_cmds(cmd, shell->env);
-		if (shell->i < shell->nb_pipe)	
-			shell->parsed_input = shell->parsed_input->next;
-		shell->parsed_input = shell->parsed_input->next;
+		ft_open_close_dup(cmd + i);
+		first_cmds(cmd + i, shell->env);
+		i++;
 	}
-	ft_printf("%s\n", cmd->command[0]);
+	ft_printf("%s\n", cmd->args[0]);
 }
-
-// void	no_pipe(t_shell *shell)
-// {
-	
-// }

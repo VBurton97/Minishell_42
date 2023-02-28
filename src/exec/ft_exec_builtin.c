@@ -11,20 +11,18 @@ int	exec_builtin(t_shell *shell, char **cmd)
 	// 	shell->parsed_input = shell->parsed_input->next;
 	// }
 	if (ft_strcmp(cmd[0], "cd") == 0)
-		ft_cd(cmd, shell);
+		return (ft_cd(cmd, shell));
 	else if (ft_strcmp(cmd[0], "echo") == 0)
-		ft_echo(cmd);
+		return (ft_echo(cmd));
 	else if (ft_strcmp(cmd[0], "env") == 0)
-		ft_env(cmd, shell);
+		return (ft_env(cmd, shell));
 	else if (ft_strcmp(cmd[0], "exit") == 0)
-		ft_exit(shell);
+		return (ft_exit(shell));
 	else if (ft_strcmp(cmd[0], "export") == 0)
-		ft_export(cmd, shell);
+		return (ft_export(cmd, shell));
 	else if (ft_strcmp(cmd[0], "pwd") == 0)
-		ft_pwd(cmd);
+		return (ft_pwd(cmd));
 	else if (ft_strcmp(cmd[0], "unset") == 0)
-		ft_unset(cmd, shell);
-	else
-		return (0);
-	return (1);
+		return (ft_unset(cmd, shell));
+	return (-1);
 }
