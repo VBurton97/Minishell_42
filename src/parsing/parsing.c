@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:41:29 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/27 16:59:46 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/28 11:35:53 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,17 @@ void	ft_free_cmd(t_cmd *cmd, int size)
 	i = 0;
 	while (i < size)
 	{
-		if (cmd[i].command == NULL)
+		if (cmd[i].args == NULL)
 			;
 		else
 		{
 			j = 0;
-			while (cmd[i].command[j])
+			while (cmd[i].args[j])
 			{
-				free(cmd[i].command[j]);
+				free(cmd[i].args[j]);
 				j++;
 			}
-			free(cmd[i].command);
+			free(cmd[i].args);
 		}
 		i++;
 	}

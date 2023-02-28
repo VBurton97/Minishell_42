@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/27 14:48:42 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/28 11:20:25 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	ft_rm_quote_word(char *word);
 /***	ft_redirect.c	***/
 void	ft_redirect(t_token **lst, t_cmd *cmd, int size);
 t_token	*ft_redirect_one(t_token *node, t_cmd *cmd);
+void	ft_update_file(t_token *node, t_cmd *cmd);
 void	ft_delete_redirect_lst(t_token **lst);
 t_token	*ft_delete_redirect_node(t_token *node1);
 

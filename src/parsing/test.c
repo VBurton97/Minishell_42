@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/27 16:24:20 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/28 11:19:01 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	ft_print_cmd(t_cmd *cmd, int size)
 	{
 		printf("\ncmd %d: ", i);
 		j = 0;
-		while (cmd[i].command && cmd[i].command[j])
+		while (cmd[i].args && cmd[i].args[j])
 		{
-			printf("%s ", cmd[i].command[j]);
+			printf("%s ", cmd[i].args[j]);
 			j++;
 		}
 		i++;

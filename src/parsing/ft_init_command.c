@@ -6,13 +6,11 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 13:10:25 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/27 18:34:56 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/28 11:19:23 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-static void	ft_free_all(char **args, int i);
 
 int ft_init_command(t_token *lst, t_cmd *cmd, int size)
 {
@@ -57,27 +55,14 @@ int	ft_init_one(t_token *node, t_cmd *cmd)
 	}
 	while (i < count)
 	{
-		args[i] = ft_strdup(node->word);
+		args[i] = node->word;
+		node->word = NULL;
 		node = node->next;
-		if (args[i] == NULL)
-		{
-			return (ft_free_all(args, i), 1);
-		}
 		i++;
 	}
 	args[i] = NULL;
-	cmd->command = args;
+	cmd->args = args;
 	return (0);
-}
-
-static void	ft_free_all(char **args, int i)
-{
-	while (i != 0)
-	{
-		free(args[i]);
-		i--;
-	}
-	free(args);
 }
 
 /*

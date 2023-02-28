@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:37:01 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/27 18:40:14 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/27 18:46:54 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_shell{
 }	t_shell;
 
 typedef struct s_cmd{
-	char	**command;
+	char	**args;
 	char	*read_file;
 	char	*write_file;
 	char	*append_file;
