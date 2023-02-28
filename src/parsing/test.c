@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:00:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/28 11:19:01 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/28 11:49:15 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,20 @@ void	ft_print_cmd(t_cmd *cmd, int size)
 	int	j;
 
 	i = 0;
+	printf("\n");
 	while (i < size)
 	{
-		printf("\ncmd %d: ", i);
+		printf("cmd %d: \n", i);
 		j = 0;
 		while (cmd[i].args && cmd[i].args[j])
 		{
 			printf("%s ", cmd[i].args[j]);
 			j++;
 		}
+		printf("\n");
+		printf("read_file %s \n", cmd[i].read_file);
+		printf("write_file %s \n", cmd[i].write_file);
+		printf("append_file %s \n", cmd[i].append_file);
 		i++;
 	}
 	printf("\n");
