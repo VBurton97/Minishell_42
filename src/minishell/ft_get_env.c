@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vburton <vburton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:56:28 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/23 14:26:50 by vburton          ###   ########.fr       */
+/*   Updated: 2023/02/28 13:20:20 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,27 @@ int	ft_get_env(t_token **env_lst)
 	}
 	return (0);
 }
+
+int	ft_get_env_2(t_token *env_lst, char ***env)
+{
+	
+}
+
+void	ft_free_env(char ***env)
+{
+	char	**tab;
+	int		i;
+
+	tab = *env;
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		tab[i] = NULL;
+		i++;
+	}
+	free(tab);
+	*env = NULL;
+}
+
+
