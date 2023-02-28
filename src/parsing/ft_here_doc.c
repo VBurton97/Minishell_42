@@ -2,52 +2,55 @@
 #include "minishell.h"
 #include "parsing.h"
 
-void	fils_here_doc(char *limiter, int	*fd);
-
 int	ft_here_doc(char *limiter)
 {
 	int		fd[2];
 	int		pid;
+	int		wstatus;
 	
 	if (pipe(fd) == -1)
-		return (1);
+	{
+		write(2, "heredoc: pipe fails\n", 20);
+		return (-1);
+	
+	}
 	pid = fork();
-	if (pid == -1)
-		perror("An error has occured while attempting to fork");
 	if (pid == 0)
-		fils_here_doc(limiter, fd);
+	{
+		close(fd[0]);
+		ft_child_here_doc(limiter, fd);
+		exit(0);
+	}
 	else
 	{
 		close(fd[1]);
-		dup2(fd[0], STDIN_FILENO);
-		close(fd[0]);
-		waitpid(pid, NULL, 0);
+		wait(&wstatus);
+		return (fd[0]);
 	}
-	return (0);
 }
 
-void	fils_here_doc(char *limiter, int	*fd)
+void	ft_child_here_doc(char *limiter, int *fd)
 {
-	char	*next_line;
+	char	*input;
 
-	close (fd[0]);
-	ft_printf("limiter = %s\n", limiter);
-	write(1, "pipe heredoc>", 13);
 	while (1)
 	{
-		next_line = get_next_line(STDIN_FILENO);
-		if (!next_line || ft_strcmp(next_line, limiter) == 0)
+		write(1, "heredoc> ", 9);
+		input = get_next_line(STDIN_FILENO);
+		if (input == NULL)
 		{
-			free(next_line);
-			close (fd[1]);
-			break ;
+			write(2, "warning: heredoc delimited by eof\n", 34);
+			close(fd[1]);
+			return ;
 		}
-		write(1, "pipe heredoc>", 13);
-		write(fd[1], next_line, ft_strlen(next_line));
-		write(fd[1], "\n", 1);
-		free(next_line);
+		if (ft_strncmp(input, limiter, ft_strlen(limiter)) == 0 
+			&& ft_strlen(input) == (ft_strlen(limiter) + 1))
+		{
+			free(input);
+			close(fd[1]);
+			return ;
+		}
+		write(fd[1], input, ft_strlen(input));
+		free(input);
 	}
-	free(limiter);
-	close (fd[1]);
-	exit(0);
 }

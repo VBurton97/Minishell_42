@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:19:25 by hsliu             #+#    #+#             */
-/*   Updated: 2023/02/28 11:41:23 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/28 11:57:05 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_token	*ft_redirect_one(t_token *node, t_cmd *cmd)
 			return (node);
 		if (!ft_strcmp(node->word, "<<") && node->is_op)
 		{
-			//cmd->read_fd = ft_here_doc()
+			cmd->read_fd = ft_here_doc(node->next->word);
 		}
 		else if (((!ft_strcmp(node->word, ">") || !ft_strcmp(node->word, ">>")
 					|| !ft_strcmp(node->word, "<")) && node->is_op))

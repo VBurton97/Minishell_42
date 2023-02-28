@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:44:07 by sasha             #+#    #+#             */
-/*   Updated: 2023/02/28 11:20:25 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/02/28 12:23:44 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,11 @@ int 	ft_count_args(t_token *node);
 t_token *ft_next_cmd(t_token *node);
 
 /*	ft_files.c	*/
-int	ft_read_file(t_token *lst, char *op);
-int	ft_write_file(t_token *lst, char *op);
+int	    ft_read_file(t_token *lst, char *op);
+int	    ft_write_file(t_token *lst, char *op);
 
 /*	ft_here_doc.c	*/
-int	ft_here_doc(char *limiter);
-void	fils_here_doc(char *limiter, int *fd);
+int	    ft_here_doc(char *limiter);
+void	ft_child_here_doc(char *limiter, int *fd);
 
 #endif
